@@ -60,11 +60,39 @@ a {
   margin-top: 50px;
 }
 
+
 /* navbar */
 #navbar {
   padding: 50px 25px;
 }
 
+.menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 85vw;
+  background-color: black;
+  opacity: 95%;
+  button.x-btn {
+    float: right;
+    padding: 50px;
+  }
+}
+
+.menu-list {
+  padding: 100px 50px 100px 75px;
+  li {
+    list-style: none;
+    font-size: 80px;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    font-style: italic;
+    color: $pistachio;
+  }
+}
 
 /* blog */
 
@@ -96,3 +124,4 @@ a.back-to-top {
     color: $pistachio;
   }
 }
+
