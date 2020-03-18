@@ -1,16 +1,16 @@
 import React from 'react'
 import './App.scss'
 import {Switch, Route} from 'react-router-dom'
-import App from './App'
+import Home from './Home'
 import Blog from './Blog'
-
+import Post from './Post'
 
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Blog} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/blog" component={Blog} />
-      <Route exact path="/blog:name" component={Blog} />
+      <Route exact path="/blog/:id" component={Post} />
     </Switch>
   )
 }

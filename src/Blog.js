@@ -1,39 +1,47 @@
-import React, {Fragment} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from './assets/fashion-logo.svg'
-import axios from 'axios'
+import { Context } from './Context'
 
-class Blog extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      posts: []
+function Blog() {
+  const [posts, setPosts] = useState([])
+  const {currentPost, setCurrentPost} = useContext(Context)
+
+  useEffect(() => {
+    getBlogPosts()
+    document.body.style.backgroundColor = 'black'
+  }, [])
+
+  const getBlogPosts = async () => {
+    try {
+      const res = await fetch('http://localhost:1337/posts')
+      const data = await res.json()
+      const result = data.map( post => {
+        return {
+          id: post.id,
+          name: post.name,
+          title: post.title,
+          imgUrl: post['preview_img'].url
+        }
+      })
+      console.log(result)
+      setPosts(result)
+    } catch (err) {
+      console.log(err)
     }
   }
 
-  async componentDidMount(){
-    const {data} = await axios.get('http://localhost:1337/posts')
-    const result = data.map( post => {
-      return {
-        id: post.id,
-        name: post.name,
-        title: post.title,
-        imgUrl: post['preview_img'].url
-      }
-    })
-    console.log(data)
-    this.setState({ posts: result })
+  const handleClick = (postId) => {
+    setCurrentPost({id:postId})
   }
 
-  getBlogPosts = () => {
-    const posts = this.state.posts
-    console.log(posts)
+  const displayBlogPosts = () => {
     if (posts.length > 0) {
       return posts.map( post => {
         return (
           <Grid className='preview' key={post.id} item md={4} >
-            <Link to={post.name}>
+            <Link to={`blog/${post.id}`} onClick={(event) => handleClick(post.id)}>
               <img src={'http://localhost:1337' + post.imgUrl} alt='Blog Preview' />
               <h3>{post.title}</h3>
             </Link>
@@ -45,23 +53,19 @@ class Blog extends React.Component {
       return <p>There are no blog posts to display.</p>
     }
   }
-
-  render(){
-    return (
-      <div id='blog'>
-        <FashionLogo className='fashion-logo center' />
-        <Grid container justify='center'>
-          {
-            this.getBlogPosts()
-          }
-        </Grid>
-        <Grid container justify='center'>
-          <a href='#blog' className='back-to-top'>BACK TO TOP</a>
-        </Grid>
-      </div>
-    )
-  }
-
+  return (
+    <div id='blog'>
+      <FashionLogo className='fashion-logo white center' />
+      <Grid container justify='center'>
+        {
+          displayBlogPosts()
+        }
+      </Grid>
+      <Grid container justify='center'>
+        <a href='#blog' className='back-to-top'>BACK TO TOP</a>
+      </Grid>
+    </div>
+  )
 }
 
 export default Blog

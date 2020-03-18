@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import {Link, Switch, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import logo from './assets/variant-logo.png'
 import {ReactComponent as Bar} from './assets/bar.svg'
 import {ReactComponent as X} from './assets/x.svg'
@@ -40,13 +40,7 @@ class Navbar extends React.Component {
   }
 
   handleClick = (event) => {
-    event.preventDefault()
     this.setState({showMenu: !this.state.showMenu})
-    console.log(this.state.showMenu)
-  }
-
-  showMenu = () => {
-
   }
 
   render(){
@@ -67,7 +61,7 @@ class Navbar extends React.Component {
               </Button>
               <ul className="menu-list">
               {
-                this.state.menuItems.map(item => <li key={item.key}><Link to={item.key} onClick={this.handleClick}>{item.title}</Link></li>)
+                this.state.menuItems.map(item => <li key={item.key}><Link to={`/${item.key}`} onClick={this.handleClick}>{item.title}</Link></li>)
               }
               </ul>
             </div>
