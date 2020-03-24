@@ -2,8 +2,14 @@
 
 $pistachio: #D8E3C3;
 
+.app {
+  width: 100%;
+  height: auto;
+}
+
 body {
   background-color: black;
+  font-family: Helvetica, Arial ,sans-serif;
 }
 
 a {
@@ -22,7 +28,9 @@ a {
 }
 
 .fashion-logo {
-  margin-top: 50px;
+  margin-bottom: 100px;
+  height: 42px;
+
   &.white path {
     fill: white;
   }
@@ -34,6 +42,9 @@ a {
 
 /* navbar */
 #navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 50px 25px;
   background-color: rgba(0,0,0,100);
 }
@@ -43,8 +54,10 @@ a {
   right: 0;
   top: 0;
   width: 85vw;
+  height: 100vh;
   background-color: black;
   opacity: 95%;
+  z-index: 100;
   button.x-btn {
     float: right;
     padding: 50px;
@@ -52,10 +65,11 @@ a {
 }
 
 .menu-list {
-  padding: 100px 50px 100px 75px;
+  padding: 100px 50px;
   li {
     list-style: none;
-    font-size: 80px;
+    font-size: 36px;
+    margin: 10px 0;
   }
   a {
     color: white;
@@ -75,30 +89,43 @@ a {
 /* blog */
 
 #blog {
-  margin: 0 25px;
-}
+  margin: 50px 0;
 
-#blog .preview {
-  padding: 75px 25px;
-}
+  .preview img {
+    width: 100%;
+  }
 
-#blog .preview img {
-  width: 100%;
-}
+  .preview a {
+    margin-top: 22px;
+    color: white;
+    font-size: 15px;
+    &:hover {
+      color: $pistachio;
+    }
+  }
 
-#blog .preview a {
-  margin-top: 22px;
-  color: white;
-  font-size: 15px;
-  &:hover {
-    color: $pistachio;
+  .preview h3 {
+    font-size: 1em;
+    padding-left: 5px;
   }
 
 }
 
-a.back-to-top {
+#blog .back-to-top {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
   color: white;
-  &:hover {
+  padding: 25px 0;
+  background-color: rgba(0,0,0,0.75);
+
+  a {
+    color: white;
+    font-weight: bold;
+  }
+  a:hover {
     color: $pistachio;
   }
 }
@@ -106,5 +133,50 @@ a.back-to-top {
 /* post */
 
 #post {
+
+ .main-img img {
+   width: 100%;
+ }
+
+ .content {
+  width: 100%;
+  padding: 24px;
+
+   .info h3 {
+     margin: 5px 0
+   }
+
+   .info p {
+     margin: 5px 0;
+   }
+
+   h1.title {
+     padding: 24px 0;
+   }
+
+    .markdown {
+      margin: 24px 0;
+   }
+
+   .markdown p, img {
+     width: 100%;
+   }
+ }
+
+}
+
+
+@media (min-width:600px) {
+
+  #blog {
+    padding: 0 25px;
+    .preview {
+      padding: 25px;
+      margin-bottom: 50px;
+    }
+    .fashion-logo {
+      margin-bottom: 50px;
+    }
+  }
 
 }

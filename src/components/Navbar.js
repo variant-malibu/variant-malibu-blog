@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
-import logo from './assets/variant-logo.png'
-import {ReactComponent as Bar} from './assets/bar.svg'
-import {ReactComponent as X} from './assets/x.svg'
+import logo from '../assets/variant-logo.png'
+import {ReactComponent as Bar} from '../assets/bar.svg'
+import {ReactComponent as X} from '../assets/x.svg'
 import {Grid, Button} from '@material-ui/core'
 
 class Navbar extends React.Component {
@@ -12,25 +12,26 @@ class Navbar extends React.Component {
       showMenu: false,
       menuItems: [
         {
-          id: 0,
+          title: 'HOME',
+          selected: false,
+          key: ''
+        },
+        {
           title: 'PARTNERS',
           selected: false,
           key: 'partners'
         },
         {
-          id: 1,
           title: 'ABOUT',
           selected: false,
           key: 'about'
         },
         {
-          id: 2,
           title: 'FASHION 4.0 BLOG',
           selected: false,
           key: 'blog'
         },
         {
-          id: 3,
           title: 'CONTACT',
           selected: false,
           key: 'contact'
@@ -46,9 +47,9 @@ class Navbar extends React.Component {
   render(){
     return (
       <Fragment>
-        <Grid id="navbar" container justify="space-between" alignItems="center" >
+        <Grid id="navbar" container>
           <Link to="/"><img src={logo} className="logo" alt="logo" /></Link>
-          <Button onClick={this.handleClick}>
+          <Button className="bar" onClick={this.handleClick}>
             <Bar/>
           </Button>
         </Grid>

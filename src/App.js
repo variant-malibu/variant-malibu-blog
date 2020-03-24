@@ -1,8 +1,8 @@
 import React, {useState, useMemo} from 'react'
 import './App.scss'
-import Navbar from './Navbar'
-import Routes from './Routes'
-import {Context} from './Context'
+import Navbar from './components/Navbar'
+import Routes from './components/Routes'
+import {Context} from './contexts/Context'
 
 
 function App() {

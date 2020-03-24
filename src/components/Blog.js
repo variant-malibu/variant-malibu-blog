@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
-import {ReactComponent as FashionLogo } from './assets/fashion-logo.svg'
-import { Context } from './Context'
+import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
+import { Context } from '../contexts/Context'
 
 function Blog() {
   const [posts, setPosts] = useState([])
@@ -14,8 +14,10 @@ function Blog() {
   }, [])
 
   const getBlogPosts = async () => {
+    const heroku = `https://variant-web-cms.herokuapp.com`
+    const localhost = `http://localhost:1337`
     try {
-      const res = await fetch('http://localhost:1337/posts')
+      const res = await fetch(heroku + '/posts')
       const data = await res.json()
       const result = data.map( post => {
         return {
@@ -37,12 +39,14 @@ function Blog() {
   }
 
   const displayBlogPosts = () => {
+    const heroku = `https://variant-web-cms.herokuapp.com`
+    const localhost = `http://localhost:1337`
     if (posts.length > 0) {
       return posts.map( post => {
         return (
-          <Grid className='preview' key={post.id} item md={4} >
+          <Grid item className="preview" key={post.id} xs={6} md={4} >
             <Link to={`blog/${post.id}`} onClick={(event) => handleClick(post.id)}>
-              <img src={'http://localhost:1337' + post.imgUrl} alt='Blog Preview' />
+              <img src={post.imgUrl} alt="Blog Preview" />
               <h3>{post.title}</h3>
             </Link>
           </Grid>
@@ -54,17 +58,19 @@ function Blog() {
     }
   }
   return (
-    <div id='blog'>
-      <FashionLogo className='fashion-logo white center' />
-      <Grid container justify='center'>
+    <Grid container direction="column" alignItems="center" id='blog'>
+      <Grid container justify="center">
+        <FashionLogo className="fashion-logo white center" />
+      </Grid>
+      <Grid container spacing={2}>
         {
           displayBlogPosts()
         }
       </Grid>
-      <Grid container justify='center'>
-        <a href='#blog' className='back-to-top'>BACK TO TOP</a>
-      </Grid>
-    </div>
+      <div className="back-to-top">
+        <a href="#blog" >BACK TO TOP</a>
+      </div>
+    </Grid>
   )
 }
 
