@@ -2,22 +2,23 @@
 
 $pistachio: #D8E3C3;
 
-.app {
-  width: 100%;
-  height: auto;
-}
+html { background-color: black; }
 
 body {
+  color: white;
   background-color: black;
   font-family: Helvetica, Arial ,sans-serif;
+  margin: 0 auto;
 }
 
 a {
   text-decoration: none;
+  color: white;
+
 }
 
-.logo {
-  color: red;
+li {
+  list-style: none;
 }
 
 .center {
@@ -45,40 +46,43 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 25px;
+  padding: 32px 12px 32px 24px;
   background-color: rgba(0,0,0,100);
+
+  .menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 85vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 95%;
+    z-index: 100;
+
+    .bar-btn {
+      padding: 0;
+    }
+
+    button.x-btn {
+      float: right;
+      padding: 50px;
+    }
+  }
+
+  .menu-list {
+    padding: 100px 50px;
+    li {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+    a:hover {
+      font-style: italic;
+      color: $pistachio;
+    }
+  }
 }
 
-.menu {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 85vw;
-  height: 100vh;
-  background-color: black;
-  opacity: 95%;
-  z-index: 100;
-  button.x-btn {
-    float: right;
-    padding: 50px;
-  }
-}
 
-.menu-list {
-  padding: 100px 50px;
-  li {
-    list-style: none;
-    font-size: 36px;
-    margin: 10px 0;
-  }
-  a {
-    color: white;
-  }
-  a:hover {
-    font-style: italic;
-    color: $pistachio;
-  }
-}
 
 /* home */
 #home h1 {
@@ -111,28 +115,11 @@ a {
 
 }
 
-#blog .back-to-top {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  color: white;
-  padding: 25px 0;
-  background-color: rgba(0,0,0,0.75);
-
-  a {
-    color: white;
-    font-weight: bold;
-  }
-  a:hover {
-    color: $pistachio;
-  }
-}
-
 /* post */
 
 #post {
+  margin: 50px 0;
+  color: black;
 
  .main-img img {
    width: 100%;
@@ -162,14 +149,89 @@ a {
      width: 100%;
    }
  }
+}
+
+
+/* back to top */
+
+
+#blog .back-to-top {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100% vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  padding: 25px 0;
+  background-color: rgba(0,0,0,0.75);
+
+  a {
+    color: white;
+    font-weight: bold;
+  }
+  a:hover {
+    color: $pistachio;
+  }
+}
+
+#post .back-to-top {
+  padding: 25px 0;
+
+  a {
+    color: black;
+    font-weight: bold;
+    margin: 0 24px;
+  }
+  a:hover {
+    color: $pistachio;
+  }
+}
+
+/* footer */
+
+#footer {
+  color: white;
+  background-color: black;
+  padding: 12px 24px;
+
+  h5.title {
+    margin-bottom: 15px;
+  }
+
+  li, p, a {
+    font-size: 0.85em;
+  }
+
+  .copyright {
+    color: white;
+    text-align: center;
+    margin: 0;
+  }
 
 }
 
 
 @media (min-width:600px) {
 
+  #navbar {
+    padding: 32px 2.5%;
+
+    .menu {
+      width: 85vw;
+      height: 85vh;
+    }
+
+    .menu-list {
+      li {
+        font-size: 42px;
+      }
+    }
+  }
+
   #blog {
-    padding: 0 25px;
+    padding: 0 2.5%;
     .preview {
       padding: 25px;
       margin-bottom: 50px;
@@ -177,6 +239,19 @@ a {
     .fashion-logo {
       margin-bottom: 50px;
     }
+  }
+
+  #post {
+
+    .info h3, p {
+      text-align: center;
+    }
+
+    .content {
+      max-width: 720px;
+    }
+
+
   }
 
 }

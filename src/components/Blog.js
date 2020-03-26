@@ -2,15 +2,18 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
-import { Context } from '../contexts/Context'
+import { PostContext } from '../contexts/PostContext'
+import backToTop from '../helpers/backToTop'
 
 function Blog() {
   const [posts, setPosts] = useState([])
-  const {currentPost, setCurrentPost} = useContext(Context)
+  const {currentPost, setCurrentPost} = useContext(PostContext)
 
   useEffect(() => {
     getBlogPosts()
-    document.body.style.backgroundColor = 'black'
+    console.log("BLOG:", currentPost)
+    document.body.style.backgroundColor = "black"
+    document.getElementById("navbar").style.backgroundColor = "black"
   }, [])
 
   const getBlogPosts = async () => {
@@ -54,9 +57,12 @@ function Blog() {
       })
 
     } else {
-      return <p>There are no blog posts to display.</p>
+      return null
     }
   }
+
+
+
   return (
     <Grid container direction="column" alignItems="center" id='blog'>
       <Grid container justify="center">
@@ -68,7 +74,7 @@ function Blog() {
         }
       </Grid>
       <div className="back-to-top">
-        <a href="#blog" >BACK TO TOP</a>
+        <a onClick={backToTop}>BACK TO TOP</a>
       </div>
     </Grid>
   )
