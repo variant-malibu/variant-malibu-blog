@@ -2,13 +2,12 @@
 
 $pistachio: #D8E3C3;
 
-html { background-color: black; }
-
-body {
+html, body {
   color: white;
   background-color: black;
   font-family: Helvetica, Arial ,sans-serif;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -46,6 +45,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 32px 12px 32px 24px;
   background-color: rgba(0,0,0,100);
 
@@ -159,7 +159,7 @@ li {
   display: flex;
   justify-content: center;
   position: fixed;
-  width: 100% vw;
+  width: 100%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -195,6 +195,11 @@ li {
   color: white;
   background-color: black;
   padding: 12px 24px;
+  width: 100%;
+
+  .section {
+    padding: 12px 0;
+  }
 
   h5.title {
     margin-bottom: 15px;
@@ -207,7 +212,7 @@ li {
   .copyright {
     color: white;
     text-align: center;
-    margin: 0;
+    margin: 12px 0;
   }
 
 }
@@ -251,7 +256,14 @@ li {
       max-width: 720px;
     }
 
+  }
 
+  #footer {
+    padding: 12px 2.5%;
+
+    .section {
+      padding: 25px;
+    }
   }
 
 }

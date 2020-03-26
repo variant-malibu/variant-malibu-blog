@@ -4,19 +4,19 @@ import {ReactComponent as InstagramIcon} from '../assets/instagram-icon.svg'
 
 function Footer() {
   return (
-    <Grid id="footer" container justify="space-between" alignItems="flex-start" spacing={4}>
-      <Grid item xs={12} sm={4}>
+    <Grid id="footer" container justify="center" >
+      <Grid className="section" item xs={12} sm={4}>
         <h5 className="title">QUICK LINK</h5>
         <li><a href="/">PRIVACY POLICY</a></li>
         <li><a href="/">TERMS & CONDITIONS</a></li>
         <li><a href="/">CONTACT</a></li>
         <li><a href="/">FAQs</a></li>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid className="section" item xs={12} sm={4}>
         <h5 className="title">SOCIAL MEDIA</h5>
         <InstagramIcon />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid className="section" item xs={12} sm={4}>
         <h5 className="title">NEWSLETTER</h5>
       </Grid>
       <Grid item xs={12} sm={12}>

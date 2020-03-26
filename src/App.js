@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Routes from './components/Routes'
 import Footer from './components/Footer'
 import {PostContext} from './contexts/PostContext'
+import {Grid} from '@material-ui/core'
 
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
   console.log("APP:", currentPost)
   return (
     <PostContext.Provider value={providerValue}>
-      <Navbar />
-      <Routes/>
-      <Footer/>
+      <Grid container>
+        <Navbar />
+        <Routes/>
+        <Footer/>
+      </Grid>
     </PostContext.Provider>
   )
 }

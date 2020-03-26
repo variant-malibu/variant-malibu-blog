@@ -11,7 +11,6 @@ function Blog() {
 
   useEffect(() => {
     getBlogPosts()
-    console.log("BLOG:", currentPost)
     document.body.style.backgroundColor = "black"
     document.getElementById("navbar").style.backgroundColor = "black"
   }, [])
@@ -61,7 +60,7 @@ function Blog() {
     }
   }
 
-
+  console.log(window.scrollY)
 
   return (
     <Grid container direction="column" alignItems="center" id='blog'>
@@ -74,7 +73,7 @@ function Blog() {
         }
       </Grid>
       <div className="back-to-top">
-        <a onClick={backToTop}>BACK TO TOP</a>
+        <a href= "#" onClick={backToTop}>BACK TO TOP</a>
       </div>
     </Grid>
   )
