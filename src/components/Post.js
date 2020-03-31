@@ -19,8 +19,6 @@ function Post() {
 
 
   const getPostById = async () => {
-   const heroku = `https://variant-web-cms.herokuapp.com`
-   console.log(process.env.REACT_APP_BACKEND + `/posts/${id}`)
     try {
       const res = await fetch( process.env.REACT_APP_BACKEND + `/posts/${id}`)
       const data = await res.json()
