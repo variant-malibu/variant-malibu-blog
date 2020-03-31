@@ -8,25 +8,21 @@ import ReactMarkdown from 'react-markdown'
 
 function Post() {
   const {currentPost, setCurrentPost} = useContext(PostContext)
-  console.log("current post:", currentPost)
   const {id} = useParams()
 
   useEffect(()=>{
     getPostById()
-    document.body.style.backgroundColor = "white"
-    document.getElementById("navbar").style.backgroundColor = "white"
     return () => {
-      setCurrentPost(null)
+      setCurrentPost({})
     }
   },[])
 
 
-
   const getPostById = async () => {
-    const heroku = `https://variant-web-cms.herokuapp.com`
-    const localhost = `http://localhost:1337`
+   const heroku = `https://variant-web-cms.herokuapp.com`
+   console.log(process.env.REACT_APP_BACKEND + `/posts/${id}`)
     try {
-      const res = await fetch(heroku + `/posts/${id}`)
+      const res = await fetch( process.env.REACT_APP_BACKEND + `/posts/${id}`)
       const data = await res.json()
       const postInfo = {
         id: data.id,
@@ -47,7 +43,9 @@ function Post() {
     <Grid id="post" container direction="column" alignItems="center" >
       <FashionLogo className="fashion-logo black center" />
       <Grid item className="main-img">
-        {currentPost.imgUrl && <img src={currentPost.imgUrl} alt="post-main-img" /> }
+        {
+        currentPost.imgUrl && <img src={currentPost.imgUrl} alt="post-main-img" />
+        }
       </Grid>
       <Grid item className="content">
         <div className="info">

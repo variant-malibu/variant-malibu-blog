@@ -3,8 +3,6 @@
 $pistachio: #D8E3C3;
 
 html, body {
-  color: white;
-  background-color: black;
   font-family: Helvetica, Arial ,sans-serif;
   margin: 0;
   padding: 0;
@@ -18,6 +16,14 @@ a {
 
 li {
   list-style: none;
+}
+
+#root {
+  &.dark {
+    color: white;
+    background-color: black;
+  }
+
 }
 
 .center {
@@ -47,7 +53,6 @@ li {
   align-items: center;
   width: 100%;
   padding: 32px 12px 32px 24px;
-  background-color: rgba(0,0,0,100);
 
   .menu {
     position: absolute;
@@ -118,8 +123,9 @@ li {
 /* post */
 
 #post {
-  margin: 50px 0;
+  margin-top: 50px;
   color: black;
+  background-color: white;
 
  .main-img img {
    width: 100%;
@@ -177,7 +183,10 @@ li {
 }
 
 #post .back-to-top {
+  display: flex;
+  justify-content: center;
   padding: 25px 0;
+  width: 100%;
 
   a {
     color: black;

@@ -11,15 +11,12 @@ function Blog() {
 
   useEffect(() => {
     getBlogPosts()
-    document.body.style.backgroundColor = "black"
-    document.getElementById("navbar").style.backgroundColor = "black"
   }, [])
 
   const getBlogPosts = async () => {
-    const heroku = `https://variant-web-cms.herokuapp.com`
-    const localhost = `http://localhost:1337`
+
     try {
-      const res = await fetch(heroku + '/posts')
+      const res = await fetch(process.env.REACT_APP_BACKEND + '/posts')
       const data = await res.json()
       const result = data.map( post => {
         return {
@@ -29,7 +26,6 @@ function Blog() {
           imgUrl: post['preview_img'].url
         }
       })
-      console.log(result)
       setPosts(result)
     } catch (err) {
       console.log(err)
@@ -41,8 +37,6 @@ function Blog() {
   }
 
   const displayBlogPosts = () => {
-    const heroku = `https://variant-web-cms.herokuapp.com`
-    const localhost = `http://localhost:1337`
     if (posts.length > 0) {
       return posts.map( post => {
         return (
@@ -60,7 +54,7 @@ function Blog() {
     }
   }
 
-  console.log(window.scrollY)
+  // console.log(window.scrollY)
 
   return (
     <Grid container direction="column" alignItems="center" id='blog'>

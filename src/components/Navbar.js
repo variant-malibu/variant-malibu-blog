@@ -5,7 +5,7 @@ import logoLight from '../assets/variant-logo.png'
 import logoDark from '../assets/variant-logo-dark.png'
 import {ReactComponent as Bar} from '../assets/bar.svg'
 import {ReactComponent as X} from '../assets/x.svg'
-import {Grid, Button} from '@material-ui/core'
+import {Button} from '@material-ui/core'
 
 const Navbar = () => {
 
@@ -43,9 +43,10 @@ const Navbar = () => {
   const handleClick = (event) => {
     setDisplayMenu(!displayMenu)
   }
+
   return (
     <div id="navbar">
-      <Link to="/"><img src={currentPost ? logoDark : logoLight} alt="logo" /></Link>
+      <Link to="/"><img src={currentPost.id === undefined ? logoLight : logoDark} alt="logo" /></Link>
       <Button className="bar-btn" onClick={handleClick}>
         <Bar/>
       </Button>
