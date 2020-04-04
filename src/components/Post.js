@@ -4,7 +4,7 @@ import { PostContext } from '../contexts/PostContext'
 import backToTop from '../helpers/backToTop'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
-import ReactMarkdown from 'react-markdown'
+import parse from 'html-react-parser'
 
 function Post() {
   const {currentPost, setCurrentPost} = useContext(PostContext)
@@ -22,6 +22,7 @@ function Post() {
     try {
       const res = await fetch( process.env.REACT_APP_BACKEND + `/posts/${id}`)
       const data = await res.json()
+      console.log('post data:', data)
       const postInfo = {
         id: data.id,
         name: data.name,
@@ -45,13 +46,15 @@ function Post() {
         currentPost.imgUrl && <img src={currentPost.imgUrl} alt="post-main-img" />
         }
       </Grid>
-      <Grid item className="content">
+      <Grid item className="post-wrapper">
         <div className="info">
           <h3>{currentPost.name}</h3>
           <p>by {currentPost.author} on {currentPost.date}</p>
         </div>
         <h1 className="title">{currentPost.title}</h1>
-        <ReactMarkdown className="markdown" source={currentPost.content} escapteHtml={false} />
+        <div className="content">
+          {parse(String(currentPost.content))}
+        </div>
       </Grid>
       <div className="back-to-top">
         <a href="#" onClick={backToTop}>BACK TO TOP</a>

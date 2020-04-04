@@ -130,12 +130,12 @@ li {
    width: 100%;
  }
 
- .content {
+ .post-wrapper {
   width: 100%;
   padding: 24px;
 
-   .info h3 {
-     margin: 5px 0
+    .info h3 {
+      margin: 5px 0
    }
 
    .info p {
@@ -146,13 +146,16 @@ li {
      padding: 24px 0;
    }
 
-    .markdown {
+    .content {
       margin: 24px 0;
-   }
 
-   .markdown p, img {
-     width: 100%;
-   }
+      p, img {
+        width: 100%;
+      }
+      figure {
+        margin: 0;
+      }
+    }
  }
 }
 
@@ -225,6 +228,7 @@ li {
 
 }
 
+/* screens bigger than small size */
 
 @media (min-width:600px) {
 
@@ -256,11 +260,11 @@ li {
 
   #post {
 
-    .info h3, p {
+    .info h3, .info p {
       text-align: center;
     }
 
-    .content {
+    .post-wrapper {
       max-width: 720px;
     }
 
