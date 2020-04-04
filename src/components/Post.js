@@ -50,8 +50,8 @@ function Post() {
         <div className="info">
           <h3>{currentPost.name}</h3>
           <p>by {currentPost.author} on {currentPost.date}</p>
+          <h1 className="title">{currentPost.title}</h1>
         </div>
-        <h1 className="title">{currentPost.title}</h1>
         <div className="content">
           {parse(String(currentPost.content))}
         </div>
