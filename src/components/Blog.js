@@ -1,13 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
-import { PostContext } from '../contexts/PostContext'
 import backToTop from '../helpers/backToTop'
 
 function Blog() {
   const [posts, setPosts] = useState([])
-  const {currentPost, setCurrentPost} = useContext(PostContext)
+  const [setCurrentPost] = useState(null)
 
   useEffect(() => {
     getBlogPosts()
@@ -53,8 +52,6 @@ function Blog() {
       return null
     }
   }
-
-  // console.log(window.scrollY)
 
   return (
     <Grid container direction="column" alignItems="center" id='blog'>

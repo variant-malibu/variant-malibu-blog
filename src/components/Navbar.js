@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
-import {PostContext} from '../contexts/PostContext'
+import {ThemeContext} from '../contexts/ThemeContext'
 import logoLight from '../assets/variant-logo.png'
 import logoDark from '../assets/variant-logo-dark.png'
 import {ReactComponent as Bar} from '../assets/bar.svg'
@@ -8,9 +8,6 @@ import {ReactComponent as X} from '../assets/x.svg'
 import {Button} from '@material-ui/core'
 
 const Navbar = () => {
-
-  const [displayMenu, setDisplayMenu] = useState(false)
-  const {currentPost, setCurrentPost} = useContext(PostContext)
 
   let menuItems = [
     {
@@ -40,13 +37,16 @@ const Navbar = () => {
     }
   ]
 
+  const [displayMenu, setDisplayMenu] = useState(false)
+  const {darkTheme} = useContext(ThemeContext)
+
   const handleClick = (event) => {
     setDisplayMenu(!displayMenu)
   }
 
   return (
     <div id="navbar">
-      <Link to="/"><img src={currentPost.id === undefined ? logoLight : logoDark} alt="logo" /></Link>
+      <Link to="/"><img src={darkTheme ? logoLight : logoDark} alt="logo" /></Link>
       <Button className="bar-btn" onClick={handleClick}>
         <Bar/>
       </Button>
@@ -59,7 +59,11 @@ const Navbar = () => {
           </Button>
           <ul className="menu-list">
           {
-            menuItems.map(item => <li key={item.key}><Link to={`/${item.key}`} onClick={handleClick}>{item.title}</Link></li>)
+            menuItems.map(item =>
+              <li key={item.key}>
+                <Link to={`/${item.key}`} onClick={handleClick}>{item.title}</Link>
+              </li>
+            )
           }
           </ul>
         </div>

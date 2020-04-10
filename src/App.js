@@ -1,34 +1,36 @@
-import React, {useState, useMemo, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Routes from './components/Routes'
 import Footer from './components/Footer'
-import {PostContext} from './contexts/PostContext'
+import {ThemeContext} from './contexts/ThemeContext'
 import {Grid} from '@material-ui/core'
 import './App.scss'
 
 function App() {
-  const [currentPost, setCurrentPost] = useState({})
-  const providerValue = useMemo(()=>({ currentPost, setCurrentPost}), [currentPost, setCurrentPost])
+
+  const [darkTheme, setDarkTheme] = useState(true)
+  const location = useLocation()
+  const darkThemes = ["/", "/blog", "/partners"]
 
   useEffect(() => {
-    console.log("navbar currentPost:", currentPost)
-    if (currentPost.id === undefined) {
-      document.getElementById("root").classList.add("dark")
+    if (darkThemes.includes(location.pathname)) {
+      setDarkTheme(true)
+      document.body.style.backgroundColor = "black"
     } else {
-      document.getElementById("root").classList.remove("dark")
+      setDarkTheme(false)
+      document.body.style.backgroundColor = "white"
     }
-
-  },[currentPost])
+  },[location])
 
   return (
-    <PostContext.Provider value={providerValue}>
+    <ThemeContext.Provider value={{ darkTheme, setDarkTheme}}>
       <Grid container>
         <Navbar />
         <Routes/>
         <Footer/>
       </Grid>
-    </PostContext.Provider>
+    </ThemeContext.Provider>
   )
 }
 

@@ -1,13 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, useParams} from 'react-router-dom'
-import { PostContext } from '../contexts/PostContext'
 import backToTop from '../helpers/backToTop'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
 import parse from 'html-react-parser'
 
 function Post() {
-  const {currentPost, setCurrentPost} = useContext(PostContext)
+  const [currentPost, setCurrentPost] = useState({})
   const {id} = useParams()
 
   useEffect(()=>{
