@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as InstagramIcon} from '../assets/instagram-icon.svg'
 import NewsletterForm from './NewsletterForm'
@@ -8,14 +9,14 @@ function Footer() {
     <Grid id="footer" container justify="space-between" >
       <Grid className="section" item>
         <h5 className="title">QUICK LINK</h5>
-        <li><a href="/">PRIVACY POLICY</a></li>
-        <li><a href="/">TERMS & CONDITIONS</a></li>
-        <li><a href="/">CONTACT</a></li>
-        <li><a href="/">FAQs</a></li>
+        <li><Link to="/privacy-policy">PRIVACY POLICY</Link></li>
+        <li><Link to="/terms-and-conditions">TERMS & CONDITIONS</Link></li>
+        <li><Link to="/contact">CONTACT</Link></li>
+        <li><Link to="/faqs">FAQs</Link></li>
       </Grid>
       <Grid className="section" item>
         <h5 className="title">SOCIAL MEDIA</h5>
-        <InstagramIcon />
+        <a href="https://www.instagram.com/variantmalibu/"><InstagramIcon /></a>
       </Grid>
       <Grid className="section" item>
         <h5 className="title">NEWSLETTER</h5>
