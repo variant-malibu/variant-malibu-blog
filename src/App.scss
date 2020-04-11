@@ -265,8 +265,8 @@ li {
 
   .email-input {
     width: 100%;
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 200px;
+    max-width: 210px;
     margin-bottom: 15px;
   }
 
@@ -401,6 +401,7 @@ li {
 
   .section {
     padding: 12px 0;
+    min-width: 100%;
   }
 
   h5.title {
@@ -495,10 +496,9 @@ li {
   /* web footer */
   #footer {
     padding: 12px 2.5%;
-
-    // .section {
-    //   padding: 25px;
-    // }
+    .section {
+      min-width: auto;
+    }
   }
 
   /* web legal */
