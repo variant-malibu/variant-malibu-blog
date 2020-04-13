@@ -43,7 +43,7 @@ const NewsletterForm = () => {
   return (
     <div className="newsletter">
       <div className="email-input">
-        <span>[<input type="text" value={email} placeholder="ENTER YOUR EMAIL HERE" onChange={handleChange} required/>]</span>
+        <span>[</span><input type="text" value={email} placeholder="ENTER YOUR EMAIL HERE" onChange={handleChange} required/><span>]</span>
       </div>
       <input type="submit" value="SUBSCRIBE" onClick={handleSubmit}/>
       <p className="alert-message">{alert}</p>
