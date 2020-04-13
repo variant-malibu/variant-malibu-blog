@@ -28,6 +28,7 @@ const ContactForm = () => {
 
   const handleChange = (evt) => {
     setAlert("")
+    console.log("palceholder:", evt.target.placeholder)
     setInputs({...inputs, [evt.target.name] : evt.target.value })
   }
 
