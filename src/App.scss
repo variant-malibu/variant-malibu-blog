@@ -32,6 +32,12 @@ li {
 
 }
 
+#footer-hr {
+  width: 100%;
+  border: 1px solid $pistachio;
+  margin: 0px
+}
+
 .center {
   display: block;
   margin-left: auto;
@@ -49,6 +55,10 @@ li {
   &.black path {
     fill: black;
   }
+}
+
+.lead {
+  margin-top: 75px;
 }
 
 /* Banner Animation */
@@ -85,6 +95,15 @@ li {
   }
 }
 
+@keyframes partnersSlide {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-2325px)
+  }
+}
+
 .sliding-banner {
   overflow: hidden;
   height: 155px;
@@ -106,6 +125,12 @@ li {
     width: 4000px;
     background-image: url("./assets/contact-banner.svg");
     animation: contactSlide 20s linear infinite;
+  }
+
+  &.partners {
+    width: 4000px;
+    background-image: url("./assets/partners-banner.svg");
+    animation: partnersSlide 20s linear infinite;
   }
 }
 
@@ -328,9 +353,7 @@ li {
     width: 100%;
   }
   .lead {
-    margin-top: 100px;
     color: black;
-    padding: 24px;
   }
 }
 
@@ -403,22 +426,6 @@ li {
 
 }
 
-/* legal */
-// #legal {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   margin-top: 50px;
-//   .content {
-//     font-family: Helvetica, Arial, sans-serif;
-//     margin: 100px 0;
-//     max-width: 600px;
-//     white-space: pre-wrap;
-//     padding: 0 25px;
-//   }
-// }
-
 #legal {
   width: 100%;
   display: flex;
@@ -433,6 +440,50 @@ li {
     overflow-y: scroll;
     overflow-x: hidden;
     white-space: pre-wrap;
+  }
+}
+
+/* partners */
+#partners {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 50px 0;
+
+  .content-wrapper {
+    padding: 0 24px;
+  }
+
+  hr {
+    border: 1px solid $pistachio;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .project {
+    width: 100%;
+    margin-bottom: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+      padding-bottom: 12px;
+    }
+
+    img.sm {
+      display: block;
+    }
+
+    img.lg {
+      display: none;
+    }
+
+    p.description {
+      font-weight: 100;
+      font-size: 14px;
+    }
   }
 }
 
@@ -472,6 +523,9 @@ li {
 
   .lead {
     font-size: 20px;
+    max-width: 750px;
+    text-align: center;
+    padding: 24px;
   }
 
   /* web navbar */
@@ -546,25 +600,37 @@ li {
     }
   }
 
-  // /* web legal */
+  /* web legal */
   #legal {
     .content {
       max-width: 700px;
     }
   }
-  // #legal {
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   .content {
-  //     padding-right: 25px;
-  //     max-width: 700px;
-  //     height: 500px;
-  //     overflow-y: scroll;
-  //     white-space: pre-wrap;
-  //   }
-  // }
+
+
+  /* web partners */
+  #partners {
+
+    .project {
+      display: flex;
+      flex-direction: row;
+
+      .container-1 {
+        width: 40%;
+        padding-right: 50px;
+      }
+      .container-2 {
+        width: 60%;
+      }
+
+      img.sm {
+        display: none;
+      }
+      img.lg {
+        display: block;
+      }
+    }
+  }
 
 }
 
