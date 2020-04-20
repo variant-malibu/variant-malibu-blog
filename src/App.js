@@ -25,7 +25,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ darkTheme, setDarkTheme}}>
-      <Grid container>
+      <Grid container id="app">
         <Navbar />
         <Routes/>
         <Footer/>
