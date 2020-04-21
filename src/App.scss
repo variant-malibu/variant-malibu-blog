@@ -152,6 +152,7 @@ li {
   align-items: center;
   width: 100%;
   padding: 32px 12px 32px 24px;
+  z-index: 50;
 
   .menu {
     position: absolute;
@@ -185,9 +186,52 @@ li {
   }
 }
 
+#navbar.fixed {
+  position: fixed;
+  z-index: 10;
+}
+
 /* home */
-#home h1 {
+#home {
   color: white;
+
+  .panel {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+
+    h1 {
+      font-size: 50px;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+  }
+
+  .panel.overview {
+    background-image: url(./assets/section-overview.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  .panel.partners {
+    background: url(./assets/section-partners.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .panel.blog {
+    background-image: url(./assets/section-blog.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .panel.contact {
+    background-image: url(./assets/section-contact.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 /* blog */
@@ -546,6 +590,7 @@ li {
   padding: 12px 24px;
   width: 100%;
   border-top: 1px solid $pistachio;
+  z-index: 10;
 
   .section {
     padding: 12px 0;
