@@ -6,7 +6,6 @@ import backToTop from '../helpers/backToTop'
 
 function Blog() {
   const [posts, setPosts] = useState([])
-  const [setCurrentPost] = useState(null)
 
   useEffect(() => {
     getBlogPosts()
@@ -31,16 +30,12 @@ function Blog() {
     }
   }
 
-  const handleClick = (postId) => {
-    setCurrentPost({id:postId})
-  }
-
   const displayBlogPosts = () => {
     if (posts.length > 0) {
       return posts.map( post => {
         return (
           <Grid item className="preview" key={post.id} xs={6} md={4} >
-            <Link to={`blog/${post.id}`} onClick={(event) => handleClick(post.id)}>
+            <Link to={`blog/${post.id}`}>
               <img src={post.imgUrl} alt="Blog Preview" />
               <h3>{post.title}</h3>
             </Link>
