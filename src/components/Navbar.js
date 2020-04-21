@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react'
-import {Link} from 'react-router-dom'
+import React, {useEffect, useState, useContext} from 'react'
+import {Link, useLocation} from 'react-router-dom'
 import {ThemeContext} from '../contexts/ThemeContext'
 import logoLight from '../assets/variant-logo.png'
 import logoDark from '../assets/variant-logo-dark.png'
@@ -39,13 +39,18 @@ const Navbar = () => {
 
   const [displayMenu, setDisplayMenu] = useState(false)
   const {darkTheme} = useContext(ThemeContext)
+  const location = useLocation()
+
+  useEffect(()=>{
+    console.log(location)
+  },[location])
 
   const handleClick = (event) => {
     setDisplayMenu(!displayMenu)
   }
 
   return (
-    <div id="navbar">
+    <div id="navbar" className={location.pathname === "/" ? "fixed" : "default"} >
       <Link to="/"><img src={darkTheme ? logoLight : logoDark} alt="logo" /></Link>
       <Button className="bar-btn" onClick={handleClick}>
         <Bar/>
