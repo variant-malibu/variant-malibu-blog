@@ -1,6 +1,7 @@
 import React from 'react'
 import MeshPants from '../assets/mesh-pants.png'
 import MeshShirt from '../assets/mesh-shirt.png'
+import * as ScrollMagic from 'scrollmagic'
 
 function About() {
 
@@ -22,6 +23,7 @@ function About() {
       content: "We believe that conscious manufacturing makes a difference, and we’re committed to reducing fashion waste with our on-demand manufacturing platform. That means garments are only created when you order them, eliminating excess inventory.  We also use sustainably-sourced and recycled fibers as well as recyclable smart fabrics. We care about our planet and preserving our natural resources for future generations."
     }
   ]
+
   return (
     <div id="about">
       <div className="banner-wrapper">
@@ -30,16 +32,16 @@ function About() {
       {
         data.map((data, idx) => {
           return (
-            <div className="content-wrapper" key={idx}>
+            <section className="content-wrapper" key={idx}>
               <div className="mesh">
                 <img src={ idx % 2 === 0 ? MeshPants : MeshShirt} alt="mesh-img" />
               </div>
               <div className="sticky-content">
-                <span>We</span>
-                <span className="action">{data.action}</span>
-                <p>{data.content}</p>
+                <span className="we">We</span>
+                <span className="action clip-out">{data.action}</span>
+                <p className="clip-out">{data.content}</p>
               </div>
-            </div>
+            </section>
           )
         })
       }
