@@ -8,23 +8,20 @@ import gsap from 'gsap'
 
 function About() {
 
-  const sectionRef = useRef(null)
-
   const [refs, setRefs] = useState([])
   const [hidden, setHidden] = useState(false)
 
   useEffect(()=> {
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry => {
-        console.log("target:", entry.target, entry.target.children)
+        console.log("target:", entry.target, entry.isIntersecting)
         setHidden(entry.isIntersecting)
         if (entry.isIntersecting) {
           fadeIn(entry.target.children[0])
-          //fadeIn(entry.target.children[2])
+          fadeIn(entry.target.children[2])
         } else {
           fadeOut(entry.target.children[0])
-
-          //clipOut(entry.target.children[2])
+          fadeOut(entry.target.children[2])
         }
       })
     },{
@@ -54,7 +51,6 @@ function About() {
   const fadeIn = element => {
     gsap.to(element, 0.5, {
       opacity: 1,
-      visibility: "visible",
       ease: "power4.out"
     })
   }
@@ -62,14 +58,13 @@ function About() {
   const fadeOut = element => {
     gsap.to(element, 0.5, {
       opacity: 0,
-      visibility: "hidden",
       ease: "power4.out"
     })
   }
 
   const clipIn = element => {
-    gsap.set(element, {
-      position: "fixed"
+    gsap.to(element, 0.5, {
+      opacity: 1
     })
   }
 
@@ -94,8 +89,10 @@ function About() {
                 <img src={ idx % 2 === 0 ? pants : shirt} alt="mesh-img" className={data.action + "mesh"} />
               </div>
               <span className="we">We</span>
-              <span className={hidden ? "action" : "action fade"}>{data.action}</span>
-              <p className={hidden ? "content" : "content fade"}>{data.action}{data.content}</p>
+              <div className="gist">
+                <span className={hidden ? "action" : "action fade"}>{data.action}</span>
+                <p className={hidden ? "content" : "content fade"}>{data.action}{data.content}</p>
+              </div>
             </section>
           )
         })

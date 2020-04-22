@@ -178,7 +178,7 @@ li {
   align-items: center;
   width: 100%;
   padding: 32px 12px 32px 24px;
-  z-index: 50;
+  z-index: 100;
 
   .menu {
     position: absolute;
@@ -229,7 +229,7 @@ li {
   padding: 12px 24px;
   width: 100%;
   border-top: 1px solid $pistachio;
-  z-index: 10;
+  z-index: 100;
 
   .section {
     padding: 12px 0;
@@ -436,28 +436,29 @@ li {
       width: 100%;
       position: fixed;
       top: 5%;
-      z-index: 100;
+      z-index: 5;
       background-color: white;
       img {
         width: 100%;
       }
     }
 
-    .mask {
-      width: 100%;
-      height: 250px;
+    .gist {
       position: fixed;
-      bottom: 52%;
-      border: 1px solid red;
+      top: 50%;
+      padding: 0 24px;
+      opacity: 0;
+      background-color: white;
+      z-index: 20;
     }
 
     .we {
       position: fixed;
-      width: 100%;
       top: 50%;
       margin-left: 24px;
-      z-index: 25;
-      background-color: white;
+      z-index: 30;
+      //width: 100%;
+      //background-color: white;
 
     }
 
@@ -465,14 +466,9 @@ li {
       font-size: 55px;
       font-weight: bold;
       &.action {
-        padding: 0 24px;
         margin-left: 95px;
         color: $pistachio;
-        z-index: 50;
       }
-    }
-    p.content {
-      padding: 0 24px;
     }
 
   }
