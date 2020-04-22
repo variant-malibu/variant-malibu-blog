@@ -1,28 +1,85 @@
-import React from 'react'
-import MeshPants from '../assets/mesh-pants.png'
-import MeshShirt from '../assets/mesh-shirt.png'
+import React, {useRef, useEffect, useState} from 'react'
+import pants from '../assets/pants.png'
+import shirt from '../assets/shirt.png'
+import data from '../assets/about-data'
 import * as ScrollMagic from 'scrollmagic'
+import gsap from 'gsap'
+
 
 function About() {
 
-  const data = [
-    {
-      action: "Are",
-      content: "Variant is a fashion-tech incubator that utilizes 3D knitting technology and body-scanning to create customizable knitwear. Our software provides brands with a cost-effective platform to co-create products with their customers. Our in-house line, Calamigos Malibu, showcases how Variant products can be integrated into existing lifestyle brands and customized for your business’ needs."
-    },
-    {
-      action: "Ideate",
-      content: "The idea for Variant was hatched in Malibu, California, a community filled with creatives and founders who respect the environment and seek sustainable solutions. Here, we nurture the best design concepts within technology and apparel. With access to leading factories in Los Angeles and top yarn suppliers and material innovators in Asia, Variant is uniquely positioned to source globally and produce locally. Our goal is to revolutionize current manufacturing processes and rally teams to change their technology infrastructure and mindset."
-    },
-    {
-      action: "Create",
-      content: "Our patented Customizer uses 3D modeling to show you exactly how your garment will look and fit on your body. 3D knitting produces custom, made to measure, three-dimensional garments directly from the machine, so each piece requires less sewing and has more comfort and durability. Our knitwear technicians can inlay smart fibers, fabrics and even sensors into each pattern; breathability and ventilation can be built in according to your measurements. Our process is ideal for apparel, and fashion and home accessories."
-    },
-    {
-      action: "Believe",
-      content: "We believe that conscious manufacturing makes a difference, and we’re committed to reducing fashion waste with our on-demand manufacturing platform. That means garments are only created when you order them, eliminating excess inventory.  We also use sustainably-sourced and recycled fibers as well as recyclable smart fabrics. We care about our planet and preserving our natural resources for future generations."
+  const sectionRef = useRef(null)
+
+  const [refs, setRefs] = useState([])
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(()=> {
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        console.log("target:", entry.target, entry.target.children)
+        setHidden(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          fadeIn(entry.target.children[0])
+          //fadeIn(entry.target.children[2])
+        } else {
+          fadeOut(entry.target.children[0])
+
+          //clipOut(entry.target.children[2])
+        }
+      })
+    },{
+      root: null,
+      rootMargin: "0% 0% -50% 0%",
+      threshold: 0.25
+    })
+
+    if (refs.length > 0) {
+      refs.forEach(ref => observer.observe(ref))
     }
-  ]
+
+    return () => {
+      if (refs.length > 0) {
+        refs.forEach(ref => observer.observe(ref))
+      }
+    }
+
+  },[refs])
+
+  const trackRef = (ref) => {
+    let temp = refs
+    temp.push(ref)
+    setRefs(temp)
+  }
+
+  const fadeIn = element => {
+    gsap.to(element, 0.5, {
+      opacity: 1,
+      visibility: "visible",
+      ease: "power4.out"
+    })
+  }
+
+  const fadeOut = element => {
+    gsap.to(element, 0.5, {
+      opacity: 0,
+      visibility: "hidden",
+      ease: "power4.out"
+    })
+  }
+
+  const clipIn = element => {
+    gsap.set(element, {
+      position: "fixed"
+    })
+  }
+
+  const clipOut = element => {
+    gsap.set(element, {
+      position: "relative"
+    })
+  }
+
+
 
   return (
     <div id="about">
@@ -32,15 +89,13 @@ function About() {
       {
         data.map((data, idx) => {
           return (
-            <section className="content-wrapper" key={idx}>
+            <section className={"content-wrapper " + data.action} key={idx} ref={ctx => trackRef(ctx)}>
               <div className="mesh">
-                <img src={ idx % 2 === 0 ? MeshPants : MeshShirt} alt="mesh-img" />
+                <img src={ idx % 2 === 0 ? pants : shirt} alt="mesh-img" className={data.action + "mesh"} />
               </div>
-              <div className="sticky-content">
-                <span className="we">We</span>
-                <span className="action clip-out">{data.action}</span>
-                <p className="clip-out">{data.content}</p>
-              </div>
+              <span className="we">We</span>
+              <span className={hidden ? "action" : "action fade"}>{data.action}</span>
+              <p className={hidden ? "content" : "content fade"}>{data.action}{data.content}</p>
             </section>
           )
         })
