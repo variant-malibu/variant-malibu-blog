@@ -3,31 +3,35 @@ import pants from '../assets/pants.png'
 import shirt from '../assets/shirt.png'
 import data from '../assets/about-data'
 import * as ScrollMagic from 'scrollmagic'
-import gsap from 'gsap'
+import gsap, {TimelineMax} from 'gsap'
 
 
 function About() {
 
   const [refs, setRefs] = useState([])
-  const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(true)
+  const observerRoot = useRef(null)
 
   useEffect(()=> {
+    window.addEventListener('scroll', handleScroll);
+
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry => {
         console.log("target:", entry.target, entry.isIntersecting)
-        setHidden(entry.isIntersecting)
         if (entry.isIntersecting) {
           fadeIn(entry.target.children[0])
-          fadeIn(entry.target.children[2])
+          //clipIn(entry.target.children[1])
+          slideIn(entry.target.children[2])
         } else {
           fadeOut(entry.target.children[0])
-          fadeOut(entry.target.children[2])
+          //clipOut(entry.target.children[1])
+          slideOut(entry.target.children[2])
         }
       })
     },{
       root: null,
       rootMargin: "0% 0% -50% 0%",
-      threshold: 0.25
+      threshold: 0.5
     })
 
     if (refs.length > 0) {
@@ -38,9 +42,21 @@ function About() {
       if (refs.length > 0) {
         refs.forEach(ref => observer.observe(ref))
       }
+      window.removeEventListener('scroll', handleScroll);
     }
 
-  },[refs])
+  },[])
+
+  const handleScroll = () => {
+    let scrollEndPosition = document.body.clientHeight - window.innerHeight - 100
+    if (window.scrollY > 150 && window.scrollY <= scrollEndPosition) {
+      observerRoot.current.style.opacity = 1
+      //observerRoot.current.style.display = "block"
+    } else {
+      observerRoot.current.style.opacity = 0
+      //observerRoot.current.style.display = "none"
+    }
+  }
 
   const trackRef = (ref) => {
     let temp = refs
@@ -49,29 +65,44 @@ function About() {
   }
 
   const fadeIn = element => {
-    gsap.to(element, 0.5, {
+    gsap.to(element,{
       opacity: 1,
-      ease: "power4.out"
+      ease: "power4.out",
+      duration: 0.5
     })
   }
 
   const fadeOut = element => {
-    gsap.to(element, 0.5, {
+    gsap.to(element, {
       opacity: 0,
-      ease: "power4.out"
+      ease: "power4.out",
+      duration: 0.5
     })
   }
 
-  const clipIn = element => {
-    gsap.to(element, 0.5, {
-      opacity: 1
+  const slideIn = element => {
+    gsap.fromTo(element, {
+      y: 0,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      ease: "power4.out",
+      duration: 0.5
     })
   }
 
-  const clipOut = element => {
-    gsap.set(element, {
-      position: "relative"
-    })
+  const slideOut = element => {
+    let tl = gsap.timeline()
+      tl.to(element, {
+        y: 0,
+        opacity: 1
+      }).to(element, {
+        y: 0,
+        opacity: 0,
+        ease: "power4.out",
+        duration: 0.5
+      })
   }
 
 
@@ -81,6 +112,7 @@ function About() {
       <div className="banner-wrapper">
         <div className="sliding-banner about"></div>
       </div>
+      <div id="observerRoot" ref={observerRoot}>
       {
         data.map((data, idx) => {
           return (
@@ -90,14 +122,14 @@ function About() {
               </div>
               <span className="we">We</span>
               <div className="gist">
-                <span className={hidden ? "action" : "action fade"}>{data.action}</span>
-                <p className={hidden ? "content" : "content fade"}>{data.action}{data.content}</p>
+                <span className="action">{data.action}</span>
+                <p className="content">{data.content}</p>
               </div>
             </section>
           )
         })
       }
-
+      </div>
     </div>
   )
 }
