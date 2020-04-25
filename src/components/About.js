@@ -8,8 +8,9 @@ import gsap, {TimelineMax} from 'gsap'
 
 function About() {
 
-  const [refs, setRefs] = useState([])
-  const [hidden, setHidden] = useState(true)
+  const [trackRefs, setTrackRefs] = useState([])
+  const [contentRefs, setContentRefs] = useState([])
+  const [animate, setAnimate] = useState(false)
   const observerRoot = useRef(null)
 
   useEffect(()=> {
@@ -17,51 +18,57 @@ function About() {
 
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry => {
-        console.log("target:", entry.target, entry.isIntersecting)
+        console.log("target:", entry, entry.isIntersecting)
         if (entry.isIntersecting) {
           fadeIn(entry.target.children[0])
-          //clipIn(entry.target.children[1])
-          slideIn(entry.target.children[2])
+          clipIn(entry.target.children[2])
+
         } else {
           fadeOut(entry.target.children[0])
-          //clipOut(entry.target.children[1])
-          slideOut(entry.target.children[2])
+          clipOut(entry.target.children[2])
+
         }
       })
     },{
       root: null,
-      rootMargin: "0% 0% -50% 0%",
-      threshold: 0.5
+      rootMargin: "70% 0% 0% 0%",
+      threshold: 0.75
     })
 
-    if (refs.length > 0) {
-      refs.forEach(ref => observer.observe(ref))
+    if (contentRefs.length > 0) {
+      contentRefs.forEach(ref => observer.observe(ref))
     }
 
     return () => {
-      if (refs.length > 0) {
-        refs.forEach(ref => observer.observe(ref))
+      if (contentRefs.length > 0) {
+        contentRefs.forEach(ref => observer.observe(ref))
       }
       window.removeEventListener('scroll', handleScroll);
     }
 
   },[])
 
+  const observer = () => {}
+
   const handleScroll = () => {
-    let scrollEndPosition = document.body.clientHeight - window.innerHeight - 100
-    if (window.scrollY > 150 && window.scrollY <= scrollEndPosition) {
-      observerRoot.current.style.opacity = 1
-      //observerRoot.current.style.display = "block"
-    } else {
-      observerRoot.current.style.opacity = 0
-      //observerRoot.current.style.display = "none"
+    let scrollEndPosition = document.body.clientHeight - window.innerHeight - 250
+    if (window.scrollY > 300 && window.scrollY <= scrollEndPosition) {
+      fadeIn(observerRoot.current)
+    } else if (window.scrollY <= 300 || window.scrollY > scrollEndPosition) {
+      fadeOut(observerRoot.current)
     }
   }
 
-  const trackRef = (ref) => {
-    let temp = refs
+  const contentRef = (ref) => {
+    let temp = contentRefs
     temp.push(ref)
-    setRefs(temp)
+    setContentRefs(temp)
+  }
+
+  const trackRef = (ref) => {
+    let temp = trackRefs
+    temp.push(ref)
+    setTrackRefs(temp)
   }
 
   const fadeIn = element => {
@@ -80,19 +87,19 @@ function About() {
     })
   }
 
-  const slideIn = element => {
+  const clipIn = element => {
     gsap.fromTo(element, {
-      y: 0,
+      y: 50,
       opacity: 0
     }, {
       y: 0,
       opacity: 1,
       ease: "power4.out",
-      duration: 0.5
+      duration: 0.25
     })
   }
 
-  const slideOut = element => {
+  const clipOut = element => {
     let tl = gsap.timeline()
       tl.to(element, {
         y: 0,
@@ -101,7 +108,7 @@ function About() {
         y: 0,
         opacity: 0,
         ease: "power4.out",
-        duration: 0.5
+        duration: 0.25
       })
   }
 
@@ -116,14 +123,16 @@ function About() {
       {
         data.map((data, idx) => {
           return (
-            <section className={"content-wrapper " + data.action} key={idx} ref={ctx => trackRef(ctx)}>
-              <div className="mesh">
-                <img src={ idx % 2 === 0 ? pants : shirt} alt="mesh-img" className={data.action + "mesh"} />
+            <section className={"content-wrapper " + data.action} key={idx} ref={ctx => contentRef(ctx)}>
+              <div className={animate ? "mesh animate":"mesh"}>
+                <img src={ idx % 2 === 0 ? pants : shirt} alt="mesh-img"/>
               </div>
-              <span className="we">We</span>
-              <div className="gist">
-                <span className="action">{data.action}</span>
-                <p className="content">{data.content}</p>
+              {/* <div className="heading"> */}
+                <span className={animate ? "we animate":"we"} ref={ctx => trackRef(ctx)}>We</span>
+                <span className={animate ? "action animate":"action"} ref={ctx => trackRef(ctx)}>{data.action}</span>
+              {/* </div> */}
+              <div className="content">
+                <p>{data.content}</p>
               </div>
             </section>
           )

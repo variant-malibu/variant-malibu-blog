@@ -421,66 +421,60 @@ li {
   flex-direction: column;
   justify-content: center;
   padding: 50px 0;
-  margin-bottom: 500px;
-
-  .banner-wrapper {
-    padding-bottom: 100px;
-  }
 
   #observerRoot {
-    opacity: 0;
-    //display: none;
+    opacity: 1;
+    margin: 250px 0;
   }
 
   section.content-wrapper {
     display:flex;
     flex-direction: column;
-    justify-content: center;
-    height: 500px;
-    //border: 1px solid red;
 
     .mesh {
-      width: 100%;
       position: fixed;
-      top: 5%;
-      z-index: 5;
-      background-color: white;
+      top: 0%;
+      height: 50%;
+      width: 100%;
+      padding: 0 24px;
+      padding-top: 5%;
       opacity: 0;
+      background-color: white;
       img {
         width: 100%;
       }
     }
 
-    .gist {
-      position: fixed;
-      top: 50%;
-      padding: 0 24px;
-      z-index: 20;
-      opacity: 0;
-    }
-
     .we {
       position: fixed;
-      top: 50%;
+      width: 100%;
+      top: 45%;
       margin-left: 24px;
-      z-index: 30;
       background-color: white;
+      z-index: 30;
+    }
+
+    .action {
+      position: fixed;
+      width: 100%;
+      top: 45%;
+      margin-left: 120px;
+      color: $pistachio;
+      background-color: white;
+      z-index: 40;
+    }
+
+    .content {
+      margin-top: 300px;
+      padding: 0 24px;
     }
 
     span {
       font-size: 55px;
       font-weight: bold;
-      &.action {
-        margin-left: 95px;
-        color: $pistachio;
-      }
     }
 
   }
-}
-
-.fadeOut {
-  animation: fadeOut 1s linear;
 }
 
 
