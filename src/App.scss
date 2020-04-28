@@ -5,6 +5,7 @@
 	4.  =Footer
 	5.  =NewsLetter
   6.  =Home
+  6a. =Indicator
   7.  =Partners
   8.  =About
   9.  =Blog
@@ -370,6 +371,10 @@ li {
   }
   .contact {
     background-image: url(./assets/section-contact.jpg);
+  }
+
+  #indicator {
+    visibility: hidden;
   }
 }
 
@@ -797,8 +802,44 @@ li {
       height: 100vh;
     }
 
+    #indicator {
+      visibility: visible;
+    }
+
 
   }
+
+
+/* web =indicator*/
+#indicator {
+  position: fixed;
+  left: 24px;
+  top: calc(50% - 75px);
+  z-index: 100;
+  color: white;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .box {
+    width: 8px;
+    height: 34px;
+    margin: 4px 0;
+    background-color: $pistachio;
+    &.active {
+      border: 1px solid $pistachio;
+      background-color: rgba(0,0,0,0);
+    }
+  }
+
+  .label {
+    margin-left: 12px;
+    font-size: 12px;
+  }
+}
+
 
   /* web partners */
   #partners {
