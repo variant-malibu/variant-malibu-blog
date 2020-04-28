@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {ThemeContext} from '../contexts/ThemeContext'
 import logoLight from '../assets/variant-logo.png'
@@ -41,39 +41,41 @@ const Navbar = () => {
   const {darkTheme} = useContext(ThemeContext)
   const location = useLocation()
 
-  useEffect(()=>{
-  },[location])
-
   const handleClick = (event) => {
     setDisplayMenu(!displayMenu)
   }
 
   return (
-    <div id="navbar" className={location.pathname === "/" ? "fixed" : "default"} >
-      <Link to="/"><img src={darkTheme ? logoLight : logoDark} alt="logo" /></Link>
-      <Button className="bar-btn" onClick={handleClick}>
-        <Bar/>
-      </Button>
+    <>
+      <div id="navbar" className={location.pathname === "/" ? "fixed" : "default"} >
+        <Link to="/"><img src={darkTheme ? logoLight : logoDark} alt="logo" /></Link>
+        <Button className="bar-btn" onClick={handleClick}>
+          <Bar/>
+        </Button>
+        {
+        displayMenu &&
+        (
+          <div className="menu">
+            <Button className="x-btn" onClick={handleClick}>
+              <X/>
+            </Button>
+            <ul className="menu-list">
+            {
+              menuItems.map(item =>
+                <li key={item.key}>
+                  <Link to={`/${item.key}`} onClick={handleClick}>{item.title}</Link>
+                </li>
+              )
+            }
+            </ul>
+          </div>
+        )
+      }
+      </div>
       {
-      displayMenu &&
-      (
-        <div className="menu">
-          <Button className="x-btn" onClick={handleClick}>
-            <X/>
-          </Button>
-          <ul className="menu-list">
-          {
-            menuItems.map(item =>
-              <li key={item.key}>
-                <Link to={`/${item.key}`} onClick={handleClick}>{item.title}</Link>
-              </li>
-            )
-          }
-          </ul>
-        </div>
-      )
-    }
-    </div>
+        displayMenu && <div className="overlay" onClick={handleClick}></div>
+      }
+    </>
   )
 }
 

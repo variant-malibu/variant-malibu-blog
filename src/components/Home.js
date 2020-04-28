@@ -36,7 +36,7 @@ const Home = () => {
   }
 
   return (
-    <div id="home">
+    <div id="home" className="page">
       <Indicator/>
       <section className="panel bg overview">
         <h1>Custom 3D Knitwear</h1>
