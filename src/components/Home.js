@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import * as ScrollMagic from 'scrollmagic'
-import gsap from "gsap"
-import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 
 
 const Home = () => {
@@ -33,17 +32,23 @@ const Home = () => {
 
   return (
     <div id="home">
-      <section className="panel overview">
+      <section className="panel bg overview">
         <h1>Custom 3D Knitwear</h1>
       </section>
-      <section className="panel partners">
-        <h1>Partners</h1>
+      <section className="panel bg partners">
+        <Link to="/partners"><h1>Partners</h1></Link>
       </section>
-      <section className="panel blog">
-        <h1>Fashion<br/>x<br/>Tech</h1>
+      <section className="panel columns">
+        <div className="bg about">
+          <Link to="/about"><h1>About Us</h1></Link>
+        </div>
+        <div className="bg blog">
+          <Link to="/blog"><h1>Fashion<br/>x<br/>Tech</h1></Link>
+        </div>
+
       </section>
-      <section className="panel contact">
-        <h1>Contact</h1>
+      <section className="panel bg contact">
+        <Link to="/contact"><h1>Contact</h1></Link>
       </section>
     </div>
   )
