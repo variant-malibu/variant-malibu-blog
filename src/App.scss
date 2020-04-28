@@ -1,5 +1,23 @@
+/* CSS DIRECTORY
+  1.  =Global
+  2.  =Banner
+	3.  =Navbar
+	4.  =Footer
+	5.  =NewsLetter
+  6.  =Home
+  7.  =Partners
+  8.  =About
+  9.  =Blog
+  10. =Post
+  11. =Contact
+  12. =Legal
+*/
 
-/* general */
+
+
+/* ===============
+   1. =Global
+=============== */
 
 $pistachio: #D8E3C3;
 $dark-pistachio: rgb(98, 149, 30);
@@ -56,12 +74,11 @@ li {
   padding: 24px;
 }
 
-/* Banner Animation */
 
-.banner-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
+
+/* ===============
+   2. =Banner
+=============== */
 
 @keyframes contactSlide {
   0%{
@@ -108,6 +125,11 @@ li {
   }
 }
 
+.banner-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
 .sliding-banner {
   overflow: hidden;
   height: 155px;
@@ -145,14 +167,18 @@ li {
 }
 
 
-/* navbar */
+
+/* ===============
+   3. =Navbar
+=============== */
+
 #navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 32px 12px 32px 24px;
-  z-index: 50;
+  z-index: 100;
 
   .menu {
     position: absolute;
@@ -191,239 +217,46 @@ li {
   z-index: 10;
 }
 
-/* home */
-#home {
+
+
+/* ===============
+   4. =Footer
+=============== */
+
+  #footer {
   color: white;
+  background-color: black;
+  padding: 12px 24px;
+  width: 100%;
+  border-top: 1px solid $pistachio;
+  z-index: 100;
 
-  .panel {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-
-    h1 {
-      font-size: 50px;
-      text-align: center;
-      font-style: italic;
-      letter-spacing: 1px;
-    }
+  .section {
+    padding: 12px 0;
+    min-width: 100%;
   }
 
-  .panel.overview {
-    background-image: url(./assets/section-overview.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-
-  }
-  .panel.partners {
-    background: url(./assets/section-partners.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .panel.blog {
-    background-image: url(./assets/section-blog.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .panel.contact {
-    background-image: url(./assets/section-contact.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-}
-
-/* blog */
-#blog {
-  margin: 50px 0;
-
-  .preview img {
-    width: 100%;
+  h5.title {
+    margin-bottom: 15px;
   }
 
-  .preview a {
-    margin-top: 22px;
+  li, p, a {
+    font-size: 0.85em;
+  }
+
+  .copyright {
     color: white;
-    font-size: 15px;
-    &:hover {
-      color: $pistachio;
-    }
-  }
-
-  .preview h3 {
-    font-size: 1em;
-    padding-left: 5px;
+    text-align: center;
+    margin: 12px 0;
   }
 
 }
 
-/* post */
-#post {
-  margin-top: 50px;
-  color: black;
-  background-color: white;
-
- .main-img img {
-   width: 100%;
- }
-
- .post-wrapper {
-  width: 100%;
-  padding: 24px;
-
-    .info h3 {
-      margin: 5px 0
-   }
-
-   .info p {
-     margin: 5px 0;
-   }
-
-   h1.title {
-     padding: 24px 0;
-   }
-
-    .content {
-      margin: 24px 0;
-
-      p, img {
-        width: 100%;
-      }
-      figure {
-        margin: 0;
-      }
-    }
- }
-}
 
 
-/* blog back to top */
-#blog .back-to-top {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: white;
-  padding: 25px 0;
-  background-color: rgba(0,0,0,0.75);
-
-  a {
-    color: white;
-    font-weight: bold;
-  }
-  a:hover {
-    color: $pistachio;
-  }
-}
-
-/* post back to top */
-#post .back-to-top {
-  display: flex;
-  justify-content: center;
-  padding: 25px 0;
-  width: 100%;
-
-  a {
-    color: black;
-    font-weight: bold;
-    margin: 0 24px;
-  }
-  a:hover {
-    color: $pistachio;
-  }
-}
-
-/* partners */
-#partners {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  padding: 50px 0;
-
-  .content-wrapper {
-    padding: 0 24px;
-  }
-
-  hr {
-    border: 1px solid $pistachio;
-    width: 100%;
-    margin-bottom: 25px;
-  }
-
-  .project {
-    width: 100%;
-    margin-bottom: 50px;
-
-    img {
-      width: 100%;
-      height: auto;
-      padding-bottom: 12px;
-    }
-
-    img.sm {
-      display: block;
-    }
-
-    img.lg {
-      display: none;
-    }
-
-    p.description {
-      font-weight: 100;
-      font-size: 14px;
-    }
-  }
-}
-
-
-/* about */
-
-#about {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 50px 0;
-
-  .content-wrapper {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 24px;
-
-    img {
-      width: 100%;
-      max-width: 500px;
-    }
-
-    span {
-      margin-right: 12px;
-      font-size: 55px;
-      font-weight: bold;
-      &.action {
-        color: $pistachio;
-      }
-    }
-
-    p {
-      font-size: 14px;
-    }
-
-    .sticky-content {
-
-    }
-
-  }
-
-}
-
-/* newsletter form  */
+/* ===============
+   5. =Newsletter
+=============== */
 .newsletter {
   display: flex;
   flex-direction: column;
@@ -480,7 +313,307 @@ li {
   }
 }
 
-/* contact */
+
+/* ===============
+   6. =Home
+=============== */
+
+#home {
+  color: white;
+
+  .panel {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+
+    h1 {
+      font-size: 50px;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+  }
+
+  .panel.overview {
+    background-image: url(./assets/section-overview.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  .panel.partners {
+    background: url(./assets/section-partners.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .panel.blog {
+    background-image: url(./assets/section-blog.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .panel.contact {
+    background-image: url(./assets/section-contact.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+
+
+/* ===============
+   7. =Partners
+=============== */
+
+#partners {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 50px 0;
+
+  .content-wrapper {
+    padding: 0 24px;
+  }
+
+  hr {
+    border: 1px solid $pistachio;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .project {
+    width: 100%;
+    margin-bottom: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+      padding-bottom: 12px;
+    }
+
+    img.sm {
+      display: block;
+    }
+
+    img.lg {
+      display: none;
+    }
+
+    p.description {
+      font-weight: 100;
+      font-size: 14px;
+    }
+  }
+}
+
+
+
+/* ===============
+   8. =About
+=============== */
+
+#about {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+  margin-bottom: 250px;
+
+  .banner-wrapper {
+    z-index: 50;
+    background-color: white;
+  }
+
+  #observerRoot {
+    opacity: 1;
+    margin-top: 250px;
+  }
+
+  section.content-wrapper {
+    display:flex;
+    flex-direction: column;
+
+    .mesh {
+      position: fixed;
+      top: 0%;
+      height: 50%;
+      width: 100%;
+      padding-top: 5%;
+      opacity: 0;
+      background-color: white;
+      padding: 12px;
+      z-index: 10;
+      img {
+        width: 100%;
+      }
+    }
+
+    &.create img {
+      transform: rotate(180deg) translateX(24px);
+    }
+    &.believe img {
+      transform: rotate(-100deg);
+    }
+
+    .mask {
+      width: 100%;
+      position: fixed;
+      height: 45%;
+      top: 0;
+      background-color: white;
+    }
+
+    .we {
+      position: fixed;
+      top: 45%;
+      margin-left: 24px;
+      background-color: white;
+      width: 100%;
+      z-index: 20;
+    }
+
+    .action {
+      position: fixed;
+      width: 100%;
+      top: 45%;
+      margin-left: 120px;
+      color: $pistachio;
+      background-color: white;
+      z-index: 30;
+    }
+
+    .content {
+      margin-top: 300px;
+      padding: 0 24px;
+    }
+
+    span {
+      font-size: 55px;
+      font-weight: bold;
+    }
+
+  }
+}
+
+
+/* ===============
+   9. =Blog
+=============== */
+
+#blog {
+  margin: 50px 0;
+
+  .preview img {
+    width: 100%;
+  }
+
+  .preview a {
+    margin-top: 22px;
+    color: white;
+    font-size: 15px;
+    &:hover {
+      color: $pistachio;
+    }
+  }
+
+  .preview h3 {
+    font-size: 1em;
+    padding-left: 5px;
+  }
+
+  .back-to-top {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    padding: 25px 0;
+    background-color: rgba(0,0,0,0.75);
+
+    a {
+      color: white;
+      font-weight: bold;
+    }
+    a:hover {
+      color: $pistachio;
+    }
+  }
+
+}
+
+
+/* ===============
+   10. =Post
+=============== */
+
+#post {
+  margin-top: 50px;
+  color: black;
+  background-color: white;
+
+ .main-img img {
+   width: 100%;
+ }
+
+ .post-wrapper {
+  width: 100%;
+  padding: 24px;
+
+    .info h3 {
+      margin: 5px 0
+   }
+
+   .info p {
+     margin: 5px 0;
+   }
+
+   h1.title {
+     padding: 24px 0;
+   }
+
+    .content {
+      margin: 24px 0;
+
+      p, img {
+        width: 100%;
+      }
+      figure {
+        margin: 0;
+      }
+    }
+ }
+
+  .back-to-top {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+    width: 100%;
+
+    a {
+      color: black;
+      font-weight: bold;
+      margin: 0 24px;
+    }
+    a:hover {
+      color: $pistachio;
+    }
+
+  }
+}
+
+
+
+/* ===============
+   11. =Contact
+=============== */
+
 #contact {
   background-color: white;
   width: 100%;
@@ -497,8 +630,6 @@ li {
   }
 }
 
-
-/* contact-form */
 #contact-form {
   display: flex;
   flex-direction: column;
@@ -566,6 +697,12 @@ li {
 
 }
 
+
+
+/* ===============
+   12. =Legal
+=============== */
+
 #legal {
   width: 100%;
   display: flex;
@@ -583,39 +720,14 @@ li {
   }
 }
 
-/* footer */
-#footer {
-  color: white;
-  background-color: black;
-  padding: 12px 24px;
-  width: 100%;
-  border-top: 1px solid $pistachio;
-  z-index: 10;
 
-  .section {
-    padding: 12px 0;
-    min-width: 100%;
-  }
 
-  h5.title {
-    margin-bottom: 15px;
-  }
-
-  li, p, a {
-    font-size: 0.85em;
-  }
-
-  .copyright {
-    color: white;
-    text-align: center;
-    margin: 12px 0;
-  }
-
-}
+/* ===============
+      WEB
+=============== */
 
 
 /* web large screen styles */
-
 @media (min-width:600px) {
 
   .lead {
@@ -640,13 +752,101 @@ li {
     }
   }
 
+  /* web footer */
+  #footer {
+    padding: 12px 2.5%;
+    .section {
+      min-width: auto;
+    }
+  }
+
+  /* web home */
+
+  /* web partners */
+  #partners {
+    .project {
+      display: flex;
+      flex-direction: row;
+
+      .container-1 {
+        width: 40%;
+        padding-right: 50px;
+      }
+
+      .container-2 {
+        width: 60%;
+      }
+
+      img.sm {
+        display: none;
+      }
+      img.lg {
+        display: block;
+      }
+    }
+  }
+
+  /* web =about */
+  #about {
+
+
+    section.content-wrapper {
+      padding: 0 5%;
+
+      .mesh {
+        width: 45%;
+        height: 100%;
+        img {
+          max-width: 500px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          padding-right: 50px;
+        }
+      }
+
+      .we {
+        left : 50%;
+        top: calc(40% - 55px);
+        z-index: 40;
+      }
+
+      .action {
+        left: 50%;
+        top: calc(40%);
+        margin-left: 24px;
+        z-index: 30;
+      }
+
+      .content {
+        width: 45%;
+        margin-left: 50%;
+      }
+
+      .mask {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        width: 45%;
+        height: 40%;
+        background-color: white;
+
+      }
+
+    }
+  }
+
+
   /* web blog */
   #blog {
     padding: 0 2.5%;
+
     .preview {
       padding: 25px;
       margin-bottom: 50px;
     }
+
     .fashion-logo {
       margin-bottom: 50px;
     }
@@ -654,15 +854,16 @@ li {
 
   /* web post */
   #post {
-
     .info {
       text-align: center;
     }
+
     .post-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .content {
       max-width: 720px;
     }
@@ -688,14 +889,6 @@ li {
     }
   }
 
-  /* web footer */
-  #footer {
-    padding: 12px 2.5%;
-    .section {
-      min-width: auto;
-    }
-  }
-
   /* web legal */
   #legal {
     .content {
@@ -703,34 +896,9 @@ li {
     }
   }
 
-
-  /* web partners */
-  #partners {
-
-    .project {
-      display: flex;
-      flex-direction: row;
-
-      .container-1 {
-        width: 40%;
-        padding-right: 50px;
-      }
-      .container-2 {
-        width: 60%;
-      }
-
-      img.sm {
-        display: none;
-      }
-      img.lg {
-        display: block;
-      }
-    }
-  }
-
 }
 
-/* web scrollbar */
+/* web scrollbar for legal pages */
 #scrollbar::-webkit-scrollbar {
   width: 12px;
   background-color: #F5F5F5 !important;
