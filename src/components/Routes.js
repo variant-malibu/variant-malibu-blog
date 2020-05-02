@@ -8,6 +8,7 @@ import Terms from './Terms'
 import Privacy from './Privacy'
 import Partners from './Partners'
 import About from './About'
+import NotFound from './NotFound'
 
 function Routes() {
   return (
@@ -20,6 +21,7 @@ function Routes() {
       <Route exact path="/terms-and-conditions" component={Terms} />
       <Route exact path="/blog" component={Blog} />
       <Route exact path="/blog/:id" component={Post} />
+      <Route component={NotFound}/>
     </Switch>
   )
 }
