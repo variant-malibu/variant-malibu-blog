@@ -12,6 +12,7 @@
   10. =Post
   11. =Contact
   12. =Legal
+  13. =NotFound
 */
 
 
@@ -749,6 +750,19 @@ li {
     overflow-x: hidden;
     white-space: pre-wrap;
   }
+}
+
+
+/* ===============
+   13. =NotFound
+=============== */
+
+#notFound {
+  width: 100%;
+  height: 35vh;
+  margin: 100px 0;
+  padding: 24px;
+  text-align: center;
 }
 
 
