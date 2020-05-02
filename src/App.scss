@@ -343,6 +343,23 @@ li {
       font-style: oblique;
       letter-spacing: 1px;
     }
+
+    button {
+      z-index: 25;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 24px;
+
+      &:hover {
+        color: $pistachio;
+      }
+    }
+
+    .back-to-top {
+      color: white;
+      font-weight: bold;
+    }
   }
 
   .panel.columns {
@@ -357,32 +374,20 @@ li {
   .bg {
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
   }
 
-  .overview {
-    background-image: url(./assets/section-overview.jpg);
-  }
-  .partners {
-    background: url(./assets/section-partners.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
   .about {
     width: 100vw;
     height: 40vh;
-    background-image: url(./assets/section-about.jpg);
   }
   .blog {
     width: 100vw;
     height: 60vh;
-    background-image: url(./assets/section-blog.jpg);
-  }
-  .contact {
-    background-image: url(./assets/section-contact.jpg);
   }
 
   #indicator {
-    visibility: hidden;
+    display: none;
   }
 }
 
@@ -794,6 +799,10 @@ li {
         font-size: 80px;
         letter-spacing: 1.5px;
       }
+
+      button {
+        display: none;
+      }
     }
 
     .panel.columns {
@@ -811,7 +820,7 @@ li {
     }
 
     #indicator {
-      visibility: visible;
+      display: block;
     }
 
 

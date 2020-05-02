@@ -18,7 +18,6 @@ function Post() {
 
 
   const getPostById = async () => {
-    console.log(process.env.REACT_APP_BACKEND)
     try {
       const res = await fetch( process.env.REACT_APP_BACKEND + `/posts/${id}`)
       const data = await res.json()
