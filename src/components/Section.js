@@ -11,8 +11,6 @@ function Section(props) {
   const mask = useRef(null)
 
   useEffect(()=> {
-    if (window.scrollY <= 300) {
-    }
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           fadeIn(entry.target.children[0])

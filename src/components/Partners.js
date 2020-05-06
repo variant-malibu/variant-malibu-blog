@@ -8,6 +8,7 @@ function Partners() {
 
   const getPartners = async () => {
     try {
+
       const res = await fetch(process.env.REACT_APP_BACKEND + '/partners')
       const data = await res.json()
       const result = data.map(partner => {
@@ -18,7 +19,6 @@ function Partners() {
           imgUrl: partner["Image"].url
         }
       })
-      console.log(result)
       setPartners(result)
     } catch (err) {
       console.error(err)
