@@ -1,6 +1,5 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React from 'react'
 import data from '../assets/about-data'
-import {fadeIn, fadeOut, clipIn} from '../helpers/gsap'
 import Section from './Section'
 
 

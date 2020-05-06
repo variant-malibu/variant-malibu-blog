@@ -1,7 +1,6 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React from 'react'
 import pants from '../assets/pants.png'
 import shirt from '../assets/shirt.png'
-import {fadeIn, fadeOut, clipIn, clipOut} from '../helpers/gsap'
 
 
 function Section(props) {
