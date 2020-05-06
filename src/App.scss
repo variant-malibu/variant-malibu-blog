@@ -46,6 +46,7 @@ li {
 }
 
 #root {
+  overflow-x: hidden;
   &.dark {
     color: white;
     background-color: black;
@@ -976,5 +977,23 @@ li {
 #scrollbar {
   scrollbar-color: $pistachio #F5F5F5 !important;
   scrollbar-width: 12px !important;
+  border-radius: 0px
+}
+
+/* universal scrollbar for all pages */
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5 !important;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $pistachio !important;
+}
+body:-webkit-scrollbar-track{
+  background-color: #F5F5F5 !important;
+}
+
+body {
+  scrollbar-color: $pistachio #F5F5F5 !important;
+  //scrollbar-width: 12px !important;
   border-radius: 0px
 }
