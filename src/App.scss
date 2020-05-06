@@ -46,6 +46,7 @@ li {
 }
 
 #root {
+  overflow-x: hidden;
   &.dark {
     color: white;
     background-color: black;

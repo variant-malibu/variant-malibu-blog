@@ -1,6 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import * as ScrollMagic from 'scrollmagic'
 import Indicator from './Indicator'
 import arrow from '../assets/down-arrow.png'
 
@@ -9,6 +8,7 @@ const Home = () => {
 
   let [triggerPos, setTriggerPos] = useState([])
   let [counter, setCounter] = useState(1)
+  let [currentIdx, setCurrentIdx] = useState(0)
 
   let overview = useRef()
   let partners = useRef()
@@ -17,36 +17,32 @@ const Home = () => {
   let contact = useRef()
 
   useEffect (() => {
-    sectionWipes()
+    let sections = document.querySelectorAll("section.panel")
     getCoverImages()
+    getTriggerPositions(sections)
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setCurrentIdx(entry.target.key)
+      }
+    },{
+      root: null,
+      rootMargin: "0% 0% 0% 0%",
+      threshold: 0.75
+    })
+
+    sections.forEach( (section, index)=> {
+      section.key = index
+      section && observer.observe(section)
+    })
+
+    return () => {
+      sections.forEach(section => {
+        section && observer.unobserve(section)
+      })
+    }
+
   },[])
 
-  const sectionWipes = () => {
-    let controller = new ScrollMagic.Controller({
-			globalSceneOptions: {
-				triggerHook: "onLeave",
-				duration: "100%"
-			}
-		})
-
-		// get all slides
-    let slides = document.querySelectorAll("section.panel")
-    let indicators = document.querySelectorAll("#indicator .container")
-
-    let positions = []
-		// create scene for every slide
-		for (var i=0; i<slides.length; i++) {
-			let slideScene = new ScrollMagic.Scene({
-					triggerElement: slides[i]
-				})
-        .setPin(slides[i], {pushFollowers: true})
-        .setClassToggle(indicators[i], "active")
-        .addTo(controller)
-
-        positions.push(slideScene.triggerPosition())
-    }
-    setTriggerPos([...positions])
-  }
 
   const getCoverImages = async () => {
     try {
@@ -64,6 +60,14 @@ const Home = () => {
     }
   }
 
+  const getTriggerPositions = (sections) => {
+    let positions = []
+    Array.from(sections).map(section => {
+      positions.push(section.offsetTop)
+    })
+    setTriggerPos(positions)
+  }
+
   const handleClick = () => {
     let index = counter
     if (index >= 4) index = 0
@@ -73,9 +77,9 @@ const Home = () => {
 
   return (
     <div id="home" className="page">
-      <Indicator positions={triggerPos} />
+      <Indicator positions={triggerPos} currentIdx={currentIdx} />
       <section className="panel bg overview" ref={overview} >
-        <h1>Custom 3D Knitwear</h1>
+        <h1>Custom <br/> 3D Knitwear</h1>
         <button className="down-arrow" onClick={handleClick}>
           <img src={arrow} alt="down-arrow" />
         </button>
@@ -86,7 +90,7 @@ const Home = () => {
           <img src={arrow} alt="down-arrow" />
         </button>
       </section>
-      <section className="panel columns">
+      <section className="panel columns" key={2}>
         <div className="bg about" ref={about}>
           <Link to="/about"><h1>About Us</h1></Link>
         </div>
@@ -97,7 +101,7 @@ const Home = () => {
           <img src={arrow} alt="down-arrow" />
         </button>
       </section>
-      <section className="panel bg contact" ref={contact}>
+      <section className="panel bg contact" key={3} ref={contact}>
         <Link to="/contact"><h1>Contact</h1></Link>
         <button className="back-to-top" onClick={handleClick}>
           BACK TO TOP

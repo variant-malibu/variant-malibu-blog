@@ -1,26 +1,30 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
-function Indicator({positions}) {
+function Indicator({positions, currentIdx}) {
 
-  const scrollTo = (index) => {
+  useEffect(()=> {
+  }, [positions, currentIdx])
+
+  const scrollTo = (evt,index) => {
+    evt.target.parentElement.classList.add("active")
     window.scrollTo(0, positions[index])
   }
   return (
     <div id="indicator">
-      <div className="container">
-        <button className="box" onClick={()=>scrollTo(0)}></button>
+      <div className={currentIdx === 0 ? "container active" : "container"}>
+        <button className="box" onClick={(evt)=>scrollTo(evt,0)}></button>
         <div className="label">Overview</div>
       </div>
-      <div className="container">
-        <button className="box" onClick={()=>scrollTo(1)}></button>
+      <div className={currentIdx === 1 ? "container active" : "container"}>
+        <button className="box" onClick={(evt)=>scrollTo(evt,1)}></button>
         <div className="label">Partners</div>
       </div>
-      <div className="container">
-        <button className="box" onClick={()=>scrollTo(2)}></button>
+      <div className={currentIdx === 2 ? "container active" : "container"}>
+        <button className="box" onClick={(evt)=>scrollTo(evt,2)}></button>
         <div className="label">About & Blog</div>
       </div>
-      <div className="container">
-        <button className="box" onClick={()=>scrollTo(3)}></button>
+      <div className={currentIdx === 3 ? "container active" : "container"}>
+        <button className="box" onClick={(evt)=>scrollTo(evt,3)}></button>
         <div className="label">Contact</div>
       </div>
     </div>
