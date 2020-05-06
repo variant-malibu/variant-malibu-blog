@@ -453,74 +453,34 @@ li {
   flex-direction: column;
   justify-content: center;
   padding: 50px 0;
-  margin-bottom: 250px;
 
-  .banner-wrapper {
-    z-index: 50;
-    background-color: white;
-  }
-
-  #observerRoot {
-    opacity: 1;
-    margin-top: 250px;
+  .sections {
+    width: 100%;
+    padding: 0 24px;
   }
 
   section.content-wrapper {
     display:flex;
     flex-direction: column;
+    justify-content: center;
+    margin: 100px 0;
 
     .mesh {
-      position: fixed;
-      top: 0%;
-      height: 50%;
-      width: 100%;
-      padding-top: 5%;
-      opacity: 0;
-      background-color: white;
-      padding: 12px;
-      z-index: 10;
       img {
         width: 100%;
       }
     }
 
     &.create img {
-      transform: rotate(180deg) translateX(24px);
+      transform: rotate(180deg);
     }
     &.believe img {
       transform: rotate(-100deg);
     }
 
-    .mask {
-      width: 100%;
-      position: fixed;
-      height: 45%;
-      top: 0;
-      background-color: white;
-    }
-
-    .we {
-      position: fixed;
-      top: 45%;
-      margin-left: 24px;
-      background-color: white;
-      width: 100%;
-      z-index: 20;
-    }
-
     .action {
-      position: fixed;
-      width: 100%;
-      top: 45%;
-      margin-left: 120px;
+      margin-left: 12px;
       color: $pistachio;
-      background-color: white;
-      z-index: 30;
-    }
-
-    .content {
-      margin-top: 300px;
-      padding: 0 24px;
     }
 
     span {
@@ -913,49 +873,28 @@ li {
   /* web =about */
   #about {
 
+    .sections {
+      padding: 0 5%;
+    }
 
     section.content-wrapper {
-      padding: 0 5%;
+
+      flex-direction: row;
+      align-items: center;
+
 
       .mesh {
-        width: 45%;
-        height: 100%;
+        width: 40%;
         img {
-          max-width: 500px;
-          position: absolute;
-          top: 0;
-          bottom: 0;
+          max-width: 450px;
+          display: block;
           margin: auto;
-          padding-right: 50px;
         }
       }
 
-      .we {
-        left : 50%;
-        top: calc(40% - 55px);
-        z-index: 40;
-      }
-
-      .action {
-        left: 50%;
-        top: calc(40%);
-        margin-left: 24px;
-        z-index: 30;
-      }
-
       .content {
-        width: 45%;
-        margin-left: 50%;
-      }
-
-      .mask {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        width: 45%;
-        height: 40%;
-        background-color: white;
-
+        width: 50%;
+        padding-left: 50px;
       }
 
     }
