@@ -2,7 +2,7 @@ import React, {useRef, useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import Indicator from './Indicator'
 import arrow from '../assets/down-arrow.png'
-
+import smoothscrollPolyfill from 'smoothscroll-polyfill'
 
 const Home = () => {
 
@@ -17,6 +17,7 @@ const Home = () => {
   let contact = useRef()
 
   useEffect (() => {
+    smoothscrollPolyfill.polyfill()
     let sections = document.querySelectorAll("section.panel")
     getCoverImages()
     getTriggerPositions(sections)
@@ -43,12 +44,11 @@ const Home = () => {
 
   },[])
 
-
   const getCoverImages = async () => {
     try {
       const res = await fetch(process.env.REACT_APP_BACKEND + "/home")
       const data = await res.json()
-
+      overview.current.src = data.overview.url
       overview.current.style.backgroundImage = `url(${data.overview.url})`
       partners.current.style.backgroundImage = `url(${data.partners.url})`
       about.current.style.backgroundImage = `url(${data.about.url})`
@@ -78,11 +78,14 @@ const Home = () => {
   return (
     <div id="home" className="page">
       <Indicator positions={triggerPos} currentIdx={currentIdx} />
-      <section className="panel bg overview" ref={overview} >
-        <h1>Custom <br/> 3D Knitwear</h1>
+      <section className="panel bg overview" >
+        <h1 className="video">Custom <br/> 3D Knitwear</h1>
         <button className="down-arrow" onClick={handleClick}>
           <img src={arrow} alt="down-arrow" />
         </button>
+        <video autoPlay muted loop ref={overview}>
+          <source/>
+        </video>
       </section>
       <section className="panel bg partners" ref={partners}>
         <Link to="/partners"><h1>Partners</h1></Link>

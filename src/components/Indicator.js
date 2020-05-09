@@ -6,8 +6,7 @@ function Indicator({positions, currentIdx}) {
   }, [positions, currentIdx])
 
   const scrollTo = (evt,index) => {
-    evt.target.parentElement.classList.add("active")
-    window.scrollTo(0, positions[index])
+    window.scrollTo({behavior: "smooth", top: positions[index]})
   }
   return (
     <div id="indicator">
