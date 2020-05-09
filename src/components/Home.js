@@ -8,7 +8,7 @@ const Home = () => {
 
   let [triggerPos, setTriggerPos] = useState([])
   let [counter, setCounter] = useState(1)
-  let [currentIdx, setCurrentIdx] = useState(0)
+  let [currentIdx, setCurrentIdx] = useState(null)
 
   let overview = useRef()
   let partners = useRef()
