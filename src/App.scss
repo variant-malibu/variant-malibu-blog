@@ -32,6 +32,9 @@ html, body {
   font-family: Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -344,6 +347,10 @@ li {
       text-align: center;
       font-style: oblique;
       letter-spacing: 1px;
+    }
+
+    h1.video {
+      position: absolute;
     }
 
     button {
@@ -994,6 +1001,5 @@ body:-webkit-scrollbar-track{
 
 body {
   scrollbar-color: $pistachio #F5F5F5 !important;
-  //scrollbar-width: 12px !important;
   border-radius: 0px
 }
