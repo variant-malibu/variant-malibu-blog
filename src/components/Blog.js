@@ -49,7 +49,7 @@ function Blog() {
   }
 
   return (
-    <Grid container direction="column" alignItems="center" id='blog'>
+    <Grid id="blog" className="content-wrapper" container direction="column" alignItems="center" >
       <Grid container justify="center">
         <FashionLogo className="fashion-logo white center" />
       </Grid>

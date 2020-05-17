@@ -7,7 +7,7 @@ function Section(props) {
   const { data, idx } = props
 
   return (
-    <section className={"content-wrapper " + data.action.toLowerCase()}>
+    <section className={"about-section " + data.action.toLowerCase()}>
       <div className="mesh">
         <img src={ idx % 2 === 0 ? pants : shirt} alt="mesh-img"/>
       </div>

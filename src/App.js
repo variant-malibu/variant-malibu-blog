@@ -17,9 +17,11 @@ function App() {
     if (darkThemes.includes(location.pathname)) {
       setDarkTheme(true)
       document.body.style.backgroundColor = "black"
+      document.getElementById("navbar").style.backgroundImage = "linear-gradient(black, rgba(0,0,0,0))"
     } else {
       setDarkTheme(false)
       document.body.style.backgroundColor = "white"
+      document.getElementById("navbar").style.backgroundImage = "linear-gradient(white, rgba(0,0,0,0))"
     }
   },[location])
 

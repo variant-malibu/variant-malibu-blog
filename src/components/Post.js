@@ -38,7 +38,7 @@ function Post() {
   }
 
   return (
-    <Grid id="post" container direction="column" alignItems="center" >
+    <Grid id="post" className="content-wrapper" container direction="column" alignItems="center" >
       <FashionLogo className="fashion-logo black center" />
       <Grid item className="main-img">
         {

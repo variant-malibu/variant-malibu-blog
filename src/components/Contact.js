@@ -3,7 +3,7 @@ import ContactForm from './ContactForm'
 
 const Contact = () => {
   return (
-    <div id="contact">
+    <div id="contact" className="content-wrapper">
       <div className="banner-wrapper">
         <div className="sliding-banner contact"></div>
       </div>
