@@ -72,6 +72,7 @@ const Home = () => {
     let index = counter
     if (index >= 4) index = 0
     window.scrollTo(0, triggerPos[index])
+    console.log(triggerPos[index])
     setCounter(++index)
   }
 
@@ -99,16 +100,13 @@ const Home = () => {
         </div>
         <div className="bg blog" ref={blog}>
           <Link to="/blog"><h1>Fashion<br/>x<br/>Tech</h1></Link>
-        </div>
-        <button className="down-arrow" onClick={handleClick}>
+          <button className="down-arrow" onClick={handleClick}>
           <img src={arrow} alt="down-arrow" />
         </button>
+        </div>
       </section>
       <section className="panel bg contact" key={3} ref={contact}>
         <Link to="/contact"><h1>Contact</h1></Link>
-        <button className="back-to-top" onClick={handleClick}>
-          BACK TO TOP
-        </button>
       </section>
     </div>
   )

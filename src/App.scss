@@ -370,15 +370,17 @@ input, textarea {
     }
 
     video {
+      width: 100%;
       height: 100%;
+      object-fit: cover;
     }
 
-    button {
-      z-index: 25;
+    button.down-arrow {
+      align-self: flex-end;
       position: absolute;
-      bottom: 0;
       width: 100%;
       padding-bottom: 24px;
+      z-index: 25;
 
       &:hover {
         color: $pistachio;
@@ -802,7 +804,7 @@ input, textarea {
         letter-spacing: 1.5px;
       }
 
-      button {
+      button.down-arrow {
         display: none;
       }
     }
@@ -824,7 +826,6 @@ input, textarea {
     #indicator {
       display: block;
     }
-
 
   }
 
