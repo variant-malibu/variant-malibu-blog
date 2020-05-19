@@ -62,7 +62,7 @@ input, textarea {
 }
 
 .content-wrapper {
-  margin-top: 100px;
+  margin: 150px 0 50px 0 !important;
 }
 
 .center {
@@ -73,7 +73,7 @@ input, textarea {
 }
 
 .fashion-logo {
-  margin-bottom: 100px;
+  margin: 50px 0 100px 0;
   height: 42px;
 
   &.white path {
@@ -482,7 +482,6 @@ input, textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px 0;
 
   .sections {
     width: 100%;
@@ -493,7 +492,7 @@ input, textarea {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    margin: 100px 0;
+    margin: 150px 0;
 
     .mesh {
       img {
@@ -529,22 +528,27 @@ input, textarea {
 #blog {
   margin: 150px 0 50px 0;
 
-  .preview img {
-    width: 100%;
-  }
+  .preview {
 
-  .preview a {
-    margin-top: 22px;
-    color: white;
-    font-size: 15px;
-    &:hover {
-      color: $pistachio;
+    .aspect-ratio-16-9 {
+      width: 100%;
+      padding-bottom: calc(100% * 16 / 9);
+      background-size: cover !important;
     }
-  }
 
-  .preview h3 {
-    font-size: 1rem;
-    padding-left: 5px;
+    a {
+      margin-top: 22px;
+      color: white;
+      font-size: 15px;
+      &:hover {
+        color: $pistachio;
+      }
+    }
+
+    h3 {
+      font-size: 1rem;
+      padding-left: 5px;
+    }
   }
 
   .back-to-top {
@@ -576,7 +580,7 @@ input, textarea {
 =============== */
 
 #post {
-  margin-top: 50px;
+  margin-top: 200px;
   color: black;
   background-color: white;
 
@@ -639,7 +643,6 @@ input, textarea {
 #contact {
   background-color: white;
   width: 100%;
-  padding: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -710,6 +713,11 @@ input, textarea {
     border: none;
     width: 120px;
     cursor: pointer;
+
+    &:hover {
+      background-color: black;
+      color: $pistachio;
+    }
   }
 
   .alert {
@@ -939,9 +947,6 @@ input, textarea {
       margin-bottom: 50px;
     }
 
-    .fashion-logo {
-      margin-bottom: 50px;
-    }
   }
 
   /* web post */

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
 import backToTop from '../helpers/backToTop'
+import axios from 'axios'
 
 function Blog() {
   const [posts, setPosts] = useState([])
@@ -11,19 +12,33 @@ function Blog() {
     getBlogPosts()
   }, [])
 
+  const compareByDate = ( a, b)  => {
+    if ( a.date > b.date ){
+      return -1;
+    }
+    if ( a.date < b.date ){
+      return 1;
+    }
+    return 0;
+  }
+
   const getBlogPosts = async () => {
 
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND + '/posts')
-      const data = await res.json()
+      const {data} = await axios.get(process.env.REACT_APP_BACKEND + '/posts', {
+        "_sort": "date:desc"
+      })
       const result = data.map( post => {
+        const epoch = new Date(post.date).getTime()
         return {
           id: post.id,
           name: post.name,
           title: post.title,
+          date: epoch,
           imgUrl: post['preview_img'].url
         }
-      })
+      }).sort(compareByDate)
+      console.log(data, result)
       setPosts(result)
     } catch (err) {
       console.log(err)
@@ -35,10 +50,13 @@ function Blog() {
       return posts.map( post => {
         return (
           <Grid item className="preview" key={post.id} xs={6} md={4} >
-            <Link to={`blog/${post.id}`}>
-              <img src={post.imgUrl} alt="Blog Preview" />
+
+              <Link to={`blog/${post.id}`}>
+              <div className="aspect-ratio-16-9" style={{"background": `url(${post.imgUrl})`}}></div>
+              {/* <img src={post.imgUrl} alt="Blog Preview" /> */}
               <h3>{post.title}</h3>
-            </Link>
+              </Link>
+
           </Grid>
         )
       })
