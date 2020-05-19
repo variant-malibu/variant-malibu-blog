@@ -55,6 +55,7 @@ const Navbar = () => {
         {
         displayMenu &&
         (
+          <div className="menu-container">
           <div className="menu">
             <Button className="x-btn" onClick={handleClick}>
               <X/>
@@ -69,12 +70,11 @@ const Navbar = () => {
             }
             </ul>
           </div>
+          <div className="overlay" onClick={handleClick}></div>
+          </div>
         )
       }
       </div>
-      {
-        displayMenu && <div className="overlay" onClick={handleClick}></div>
-      }
     </>
   )
 }

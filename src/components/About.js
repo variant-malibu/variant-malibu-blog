@@ -6,7 +6,7 @@ import Section from './Section'
 function About() {
 
   return (
-    <div id="about">
+    <div id="about" className="content-wrapper">
       <div className="banner-wrapper">
         <div className="sliding-banner about"></div>
       </div>

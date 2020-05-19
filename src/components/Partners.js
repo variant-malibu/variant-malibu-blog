@@ -48,12 +48,12 @@ function Partners() {
 
   }
   return (
-    <div id="partners">
+    <div id="partners" className="content-wrapper">
       <div className="banner-wrapper">
         <div className="sliding-banner partners"></div>
       </div>
       <p className="lead">Variant’s platform was made for collaboraton. By partnering with companies and brands, we develop custom creative solutions and products tailored to meet your needs. </p>
-      <div className="content-wrapper">
+      <div className="partners-section">
         { displaypProjects() }
       </div>
     </div>
