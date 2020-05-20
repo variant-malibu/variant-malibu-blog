@@ -28,7 +28,6 @@ const ContactForm = () => {
 
   const handleChange = (evt) => {
     setAlert("")
-    console.log("ENV Variables:", process.env.REACT_APP_BACKEND)
     setInputs({...inputs, [evt.target.name] : evt.target.value })
   }
 
