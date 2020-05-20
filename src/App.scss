@@ -590,8 +590,14 @@ input, textarea {
   color: black;
   background-color: white;
 
- .main-img img {
+ .main-img {
    width: 100%;
+   height: 550px;
+   img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
  }
 
  .post-wrapper {
@@ -604,6 +610,7 @@ input, textarea {
 
    .info p {
      margin: 5px 0;
+     padding-top: 10px;
    }
 
    h1.title {
