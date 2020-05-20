@@ -38,6 +38,11 @@ html {
   scroll-behavior: smooth;
 }
 
+p {
+  font-family: "Helvetica-Light", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+
 a {
   text-decoration: none;
   color: white;
@@ -87,6 +92,7 @@ input, textarea {
 .lead {
   margin-top: 75px;
   padding: 24px;
+  font-style: italic;
 }
 
 
@@ -933,6 +939,9 @@ input, textarea {
         width: 50%;
         max-width: 550px;
         padding-left: 50px;
+        p {
+          line-height: 1.75;
+        }
       }
 
     }
