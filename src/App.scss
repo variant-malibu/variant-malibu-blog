@@ -193,6 +193,24 @@ input, textarea {
    3. =Navbar
 =============== */
 
+@keyframes menuSlide {
+  0%{
+    width: 0%;
+  }
+  100%{
+    width: 85vw;
+  }
+}
+
+@keyframes linkHoverAnimation {
+  0%{
+    font-style: normal;
+  }
+  100%{
+    font-style: italic;;
+  }
+}
+
 #navbar {
   position: fixed;
   display: flex;
@@ -225,6 +243,7 @@ input, textarea {
     width: 85vw;
     height: 100vh;
     background-color: black;
+    animation: menuSlide 0.5s ease-out;
 
     .bar-btn {
       padding: 0;
@@ -245,6 +264,7 @@ input, textarea {
     a:hover {
       font-style: italic;
       color: $pistachio;
+      animation: linkHoverAnimation 0.25s ease-in-out;
     }
   }
 }
@@ -860,6 +880,17 @@ input, textarea {
 
 
 /* web =indicator*/
+
+@keyframes indicatorSlide {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+
+}
+
 #indicator {
   position: fixed;
   left: 24px;
@@ -893,6 +924,8 @@ input, textarea {
   }
 
   .container.active {
+    animation: indicatorSlide 0.5s ease-in-out;
+
     button.box {
       border: 1.25px solid $pistachio;
       background-color: rgba(0,0,0,0);
