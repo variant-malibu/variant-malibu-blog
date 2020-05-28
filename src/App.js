@@ -26,7 +26,7 @@ function App() {
   },[location])
 
   return (
-    <ThemeContext.Provider value={{ darkTheme, setDarkTheme}}>
+    <ThemeContext.Provider value={{darkTheme, setDarkTheme}}>
       <Grid container id="app">
         <Navbar location={location} />
         <Routes/>

@@ -16,7 +16,8 @@ function Partners() {
           id: partner.id,
           name: partner["Name"],
           description: partner["Description"],
-          imgUrl: partner["Image"].url
+          imgUrl: partner["Image"].url,
+          url: partner.url
         }
       })
       setPartners(result)
@@ -33,12 +34,18 @@ function Partners() {
           <hr/>
           <div className="project" key={project.id}>
             <div className="container-1">
-              <h1>{project.name}</h1>
-              <img src={project.imgUrl} className="sm" alt="partner-img"/>
+              <a href={project.url || "#"}>
+                <h1>{project.name}</h1>
+              </a>
+              <a href={project.url || "#"}>
+                <img src={project.imgUrl} className="sm" alt="partner-img"/>
+              </a>
               <p className="description">{project.description}</p>
             </div>
             <div className="container-2">
-              <img src={project.imgUrl} className="lg" alt="partner-img"/>
+              <a href={project.url || "#"}>
+                <img src={project.imgUrl} className="lg" alt="partner-img"/>
+              </a>
             </div>
           </div>
         </React.Fragment>
