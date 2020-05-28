@@ -53,7 +53,6 @@ function Blog() {
 
               <Link to={`blog/${post.id}`}>
               <div className="aspect-ratio-16-9" style={{"background": `url(${post.imgUrl})`}}></div>
-              {/* <img src={post.imgUrl} alt="Blog Preview" /> */}
               <h3>{post.title}</h3>
               </Link>
 
