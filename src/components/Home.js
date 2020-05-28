@@ -4,7 +4,7 @@ import Indicator from './Indicator'
 import arrow from '../assets/down-arrow.png'
 import smoothscrollPolyfill from 'smoothscroll-polyfill'
 
-const Home = () => {
+const Home = React.memo(() => {
 
   let [triggerPos, setTriggerPos] = useState([])
   let [counter, setCounter] = useState(1)
@@ -16,8 +16,10 @@ const Home = () => {
   let blog = useRef()
   let contact = useRef()
 
+
   useEffect (() => {
     smoothscrollPolyfill.polyfill()
+
     let sections = document.querySelectorAll("section.panel")
     getCoverImages()
     getTriggerPositions(sections)
@@ -56,7 +58,7 @@ const Home = () => {
       contact.current.style.backgroundImage = `url(${data.contact.url})`
 
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -72,7 +74,6 @@ const Home = () => {
     let index = counter
     if (index >= 4) index = 0
     window.scrollTo(0, triggerPos[index])
-    console.log(triggerPos[index])
     setCounter(++index)
   }
 
@@ -110,6 +111,6 @@ const Home = () => {
       </section>
     </div>
   )
-}
+})
 
 export default Home

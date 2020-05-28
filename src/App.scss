@@ -220,6 +220,13 @@ input, textarea {
   padding: 32px 12px 32px 24px;
   z-index: 200;
 
+  &.dark {
+    background-image: linear-gradient(black, rgba(0,0,0,0))
+  }
+  &.light {
+    background-image: linear-gradient(white, rgba(0,0,0,0))
+  }
+
   .menu-container {
     top: 0;
     right: 0;
@@ -264,7 +271,7 @@ input, textarea {
     a:hover {
       font-style: italic;
       color: $pistachio;
-      animation: linkHoverAnimation 0.25s ease-in-out;
+      animation: linkHoverAnimation 0.1s ease-in;
     }
   }
 }
@@ -333,7 +340,7 @@ input, textarea {
     background: black;
     border-width: 0px;
     color: $pistachio;
-    // font-size: 0.8rem;
+    font-size: 0.8rem;
     padding: 0 10px;
     font-style: italic;
     letter-spacing: 0.5px;
@@ -744,6 +751,7 @@ input, textarea {
 
   input[type="submit"] {
     background-color: $pistachio;
+    font-size: 0.85rem;
     color: black;
     border: none;
     width: 120px;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {useLocation} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Routes from './components/Routes'
@@ -14,21 +14,21 @@ function App() {
   const darkThemes = ["/", "/blog", "/partners"]
 
   useEffect(() => {
+
     if (darkThemes.includes(location.pathname)) {
       setDarkTheme(true)
       document.body.style.backgroundColor = "black"
-      document.getElementById("navbar").style.backgroundImage = "linear-gradient(black, rgba(0,0,0,0))"
     } else {
       setDarkTheme(false)
       document.body.style.backgroundColor = "white"
-      document.getElementById("navbar").style.backgroundImage = "linear-gradient(white, rgba(0,0,0,0))"
     }
+
   },[location])
 
   return (
     <ThemeContext.Provider value={{ darkTheme, setDarkTheme}}>
       <Grid container id="app">
-        <Navbar />
+        <Navbar location={location} />
         <Routes/>
         <Footer/>
       </Grid>
