@@ -4,9 +4,11 @@ import {Grid} from '@material-ui/core'
 import {ReactComponent as FashionLogo } from '../assets/fashion-logo.svg'
 import backToTop from '../helpers/backToTop'
 import axios from 'axios'
+import Loader from 'react-loader-spinner'
 
 function Blog() {
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getBlogPosts()
@@ -39,6 +41,7 @@ function Blog() {
         }
       }).sort(compareByDate)
       setPosts(result)
+      setLoading(false)
     } catch (err) {
       console.error(err)
     }
@@ -65,19 +68,26 @@ function Blog() {
   }
 
   return (
-    <Grid id="blog" className="content-wrapper" container direction="column" alignItems="center" >
-      <Grid container justify="center">
-        <FashionLogo className="fashion-logo white center" />
+    <>
+    { loading ?
+      <div className="loading">
+        <Loader type="ThreeDots" color="#D8E3C3" height={50} width={50} />
+      </div> :
+      <Grid id="blog" className="content-wrapper" container direction="column" alignItems="center" >
+        <Grid container justify="center">
+          <FashionLogo className="fashion-logo white center" />
+        </Grid>
+        <Grid container spacing={2}>
+          {
+            displayBlogPosts()
+          }
+        </Grid>
+        <div className="back-to-top">
+          <a href= "#" onClick={backToTop}>BACK TO TOP</a>
+        </div>
       </Grid>
-      <Grid container spacing={2}>
-        {
-          displayBlogPosts()
-        }
-      </Grid>
-      <div className="back-to-top">
-        <a href= "#" onClick={backToTop}>BACK TO TOP</a>
-      </div>
-    </Grid>
+    }
+    </>
   )
 }
 

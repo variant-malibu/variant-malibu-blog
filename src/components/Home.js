@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Indicator from './Indicator'
 import arrow from '../assets/down-arrow.png'
 import smoothscrollPolyfill from 'smoothscroll-polyfill'
+import Loader from 'react-loader-spinner'
 
 const Home = React.memo(() => {
 
@@ -138,12 +139,19 @@ const Home = React.memo(() => {
   }
 
   return (
-    <div id="home" className="page">
-      <Indicator positions={triggerPos} currentIdx={currentIdx} labels={sections} />
-      {
-        displaySections()
-      }
-    </div>
+    <>
+      { loading ?
+      <div className="loading">
+        <Loader type="ThreeDots" color="#D8E3C3" height={50} width={50} />
+      </div> :
+      <div id="home" className="page">
+        <Indicator positions={triggerPos} currentIdx={currentIdx} labels={sections} />
+        {
+          displaySections()
+        }
+      </div>
+    }
+    </>
   )
 })
 
