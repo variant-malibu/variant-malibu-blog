@@ -51,13 +51,14 @@ const Home = React.memo(() => {
     try {
       const res = await fetch(process.env.REACT_APP_BACKEND + "/home-sections")
       const data = await res.json()
-
       const sections = data.map(section => {
-        const panels = section.section.map( panel => {
+        const panels = section.panel.map( panel => {
           return {
+            id: panel.id,
             title: panel.title,
-            coverUrl: panel.cover.url,
-            type: panel.cover.mime.split("/")[0] || null
+            mediaUrl: panel.media.url,
+            urlpath: panel.urlpath,
+            type: panel.media.mime.split("/")[0] || null
           }
         })
         return {
@@ -109,17 +110,21 @@ const Home = React.memo(() => {
     return panels.map( (panel, idx) => {
       const panelClassName = panels.length > 1 ? `panel bg column${idx+1}` : "panel bg"
       const panelStyle = {
-        "backgroundImage": `url(${panel.coverUrl})`
+        "backgroundImage": `url(${panel.mediaUrl})`
       }
       return (
-        <div key={Math.random()} className={panelClassName} style={panelStyle}>
+        <div key={panel.id} className={panelClassName} style={panelStyle}>
         {
-          panel.title && <h1 className={panel.type}>{panel.title}</h1>
+          panel.title &&
+
+            <h1 className={panel.type}>
+              <Link to={"/" + panel.urlpath}>{panel.title}</Link>
+            </h1>
         }
         {
           panel.type === "video" &&
             <video autoPlay muted loop>
-              <source src={panel.coverUrl}/>
+              <source src={panel.mediaUrl}/>
             </video>
         }
         {
@@ -140,35 +145,6 @@ const Home = React.memo(() => {
       {
         displaySections()
       }
-      {/* <section className="panel bg overview" >
-        <h1 className="video">Custom <br/> 3D Knitwear</h1>
-        <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-        <video autoPlay muted loop ref={overview}>
-          <source/>
-        </video>
-      </section>
-      <section className="panel bg partners" ref={partners}>
-        <Link to="/partners"><h1>Partners</h1></Link>
-        <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-      </section>
-      <section className="panel columns" key={2}>
-        <div className="bg about" ref={about}>
-          <Link to="/about"><h1>About Us</h1></Link>
-        </div>
-        <div className="bg blog" ref={blog}>
-          <Link to="/blog"><h1>Fashion<br/>x<br/>Tech</h1></Link>
-          <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-        </div>
-      </section>
-      <section className="panel bg contact" key={3} ref={contact}>
-        <Link to="/contact"><h1>Contact</h1></Link>
-      </section> */}
     </div>
   )
 })
