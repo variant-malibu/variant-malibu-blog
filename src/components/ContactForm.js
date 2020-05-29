@@ -17,11 +17,10 @@ const ContactForm = () => {
     const url = `${process.env.REACT_APP_BACKEND}/send`
     try {
       const {data} = await axios.post(url, {from, subject, html})
-      console.log(data)
       setAlert(data)
       setInputs({})
     } catch (err) {
-      console.log(err)
+      console.error(err)
       setAlert(err)
     }
   }

@@ -6,22 +6,19 @@ import smoothscrollPolyfill from 'smoothscroll-polyfill'
 
 const Home = React.memo(() => {
 
-  let [triggerPos, setTriggerPos] = useState([])
-  let [counter, setCounter] = useState(1)
-  let [currentIdx, setCurrentIdx] = useState(null)
-
-  let overview = useRef()
-  let partners = useRef()
-  let about = useRef()
-  let blog = useRef()
-  let contact = useRef()
-
+  const [sections, setSections] = useState([])
+  const [triggerPos, setTriggerPos] = useState([])
+  const [counter, setCounter] = useState(1)
+  const [currentIdx, setCurrentIdx] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect (() => {
     smoothscrollPolyfill.polyfill()
+    getSectionData()
+  },[])
 
-    let sections = document.querySelectorAll("section.panel")
-    getCoverImages()
+  useEffect(()=> {
+    let sections = document.querySelectorAll("section")
     getTriggerPositions(sections)
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -44,18 +41,35 @@ const Home = React.memo(() => {
       })
     }
 
-  },[])
+  },[loading])
 
-  const getCoverImages = async () => {
+  const getSectionData = async () => {
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND + "/home")
+      const res = await fetch(process.env.REACT_APP_BACKEND + "/home-sections")
       const data = await res.json()
-      overview.current.src = data.overview.url
-      overview.current.style.backgroundImage = `url(${data.overview.url})`
-      partners.current.style.backgroundImage = `url(${data.partners.url})`
-      about.current.style.backgroundImage = `url(${data.about.url})`
-      blog.current.style.backgroundImage = `url(${data.blog.url})`
-      contact.current.style.backgroundImage = `url(${data.contact.url})`
+      const sections = data.map(section => {
+        const panels = section.panel.map( panel => {
+          return {
+            id: panel.id,
+            title: panel.title,
+            mediaUrl: panel.media.url,
+            urlpath: panel.urlpath,
+            type: panel.media.mime.split("/")[0] || null
+          }
+        })
+        return {
+          id: section.id,
+          name: section.name,
+          order: section.order,
+          panels: panels
+        }
+      }).sort((a,b) => {
+        if (a.order < b.order) return -1
+        if (a.order > b.order) return 1
+        return 0
+      })
+      setSections(sections)
+      setLoading(false)
 
     } catch (err) {
       console.error(err)
@@ -77,38 +91,58 @@ const Home = React.memo(() => {
     setCounter(++index)
   }
 
+  const displaySections = () => {
+    return sections.map( (section, idx) => {
+      let sectionClassName = section.panels.length > 1 ? "columns" : "default"
+      return (
+        <section key={section.name} className={sectionClassName}>
+        {
+          getSectionContent(section.panels, section.length-1 === idx)
+        }
+        </section>
+      )
+    })
+  }
+
+  const getSectionContent = (panels, lastSection) => {
+    return panels.map( (panel, idx) => {
+      const panelClassName = panels.length > 1 ? `panel bg column${idx+1}` : "panel bg"
+      const panelStyle = {
+        "backgroundImage": `url(${panel.mediaUrl})`
+      }
+      return (
+        <div key={panel.id} className={panelClassName} style={panelStyle}>
+        {
+          panel.title &&
+
+            <h1 className={panel.type}>
+              <Link to={"/" + panel.urlpath}>{panel.title}</Link>
+            </h1>
+        }
+        {
+          panel.type === "video" &&
+            <video autoPlay muted loop>
+              <source src={panel.mediaUrl}/>
+            </video>
+        }
+        {
+          panels.length-1 === idx && !lastSection &&
+          <button className="down-arrow" onClick={handleClick}>
+            <img src={arrow} alt="down-arrow" />
+          </button>
+        }
+        </div>
+      )
+    })
+
+  }
+
   return (
     <div id="home" className="page">
-      <Indicator positions={triggerPos} currentIdx={currentIdx} />
-      <section className="panel bg overview" >
-        <h1 className="video">Custom <br/> 3D Knitwear</h1>
-        <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-        <video autoPlay muted loop ref={overview}>
-          <source/>
-        </video>
-      </section>
-      <section className="panel bg partners" ref={partners}>
-        <Link to="/partners"><h1>Partners</h1></Link>
-        <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-      </section>
-      <section className="panel columns" key={2}>
-        <div className="bg about" ref={about}>
-          <Link to="/about"><h1>About Us</h1></Link>
-        </div>
-        <div className="bg blog" ref={blog}>
-          <Link to="/blog"><h1>Fashion<br/>x<br/>Tech</h1></Link>
-          <button className="down-arrow" onClick={handleClick}>
-          <img src={arrow} alt="down-arrow" />
-        </button>
-        </div>
-      </section>
-      <section className="panel bg contact" key={3} ref={contact}>
-        <Link to="/contact"><h1>Contact</h1></Link>
-      </section>
+      <Indicator positions={triggerPos} currentIdx={currentIdx} labels={sections} />
+      {
+        displaySections()
+      }
     </div>
   )
 })
