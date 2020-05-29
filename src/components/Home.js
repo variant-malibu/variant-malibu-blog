@@ -10,19 +10,15 @@ const Home = React.memo(() => {
   const [triggerPos, setTriggerPos] = useState([])
   const [counter, setCounter] = useState(1)
   const [currentIdx, setCurrentIdx] = useState(null)
-
-  let overview = useRef()
-  let partners = useRef()
-  let about = useRef()
-  let blog = useRef()
-  let contact = useRef()
-
+  const [loading, setLoading] = useState(true)
 
   useEffect (() => {
     smoothscrollPolyfill.polyfill()
+    getSectionData()
+  },[])
 
-    getSections()
-    let sections = document.querySelectorAll("section.panel")
+  useEffect(()=> {
+    let sections = document.querySelectorAll("section")
     getTriggerPositions(sections)
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -45,9 +41,9 @@ const Home = React.memo(() => {
       })
     }
 
-  },[])
+  },[loading])
 
-  const getSections = async () => {
+  const getSectionData = async () => {
     try {
       const res = await fetch(process.env.REACT_APP_BACKEND + "/home-sections")
       const data = await res.json()
@@ -62,6 +58,7 @@ const Home = React.memo(() => {
           }
         })
         return {
+          id: section.id,
           name: section.name,
           order: section.order,
           panels: panels
@@ -72,6 +69,7 @@ const Home = React.memo(() => {
         return 0
       })
       setSections(sections)
+      setLoading(false)
 
     } catch (err) {
       console.error(err)
@@ -141,7 +139,7 @@ const Home = React.memo(() => {
 
   return (
     <div id="home" className="page">
-      <Indicator positions={triggerPos} currentIdx={currentIdx} />
+      <Indicator positions={triggerPos} currentIdx={currentIdx} labels={sections} />
       {
         displaySections()
       }
