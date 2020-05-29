@@ -6,9 +6,10 @@ import smoothscrollPolyfill from 'smoothscroll-polyfill'
 
 const Home = React.memo(() => {
 
-  let [triggerPos, setTriggerPos] = useState([])
-  let [counter, setCounter] = useState(1)
-  let [currentIdx, setCurrentIdx] = useState(null)
+  const [sections, setSections] = useState([])
+  const [triggerPos, setTriggerPos] = useState([])
+  const [counter, setCounter] = useState(1)
+  const [currentIdx, setCurrentIdx] = useState(null)
 
   let overview = useRef()
   let partners = useRef()
@@ -20,8 +21,8 @@ const Home = React.memo(() => {
   useEffect (() => {
     smoothscrollPolyfill.polyfill()
 
+    getSections()
     let sections = document.querySelectorAll("section.panel")
-    getCoverImages()
     getTriggerPositions(sections)
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -46,16 +47,30 @@ const Home = React.memo(() => {
 
   },[])
 
-  const getCoverImages = async () => {
+  const getSections = async () => {
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND + "/home")
+      const res = await fetch(process.env.REACT_APP_BACKEND + "/home-sections")
       const data = await res.json()
-      overview.current.src = data.overview.url
-      overview.current.style.backgroundImage = `url(${data.overview.url})`
-      partners.current.style.backgroundImage = `url(${data.partners.url})`
-      about.current.style.backgroundImage = `url(${data.about.url})`
-      blog.current.style.backgroundImage = `url(${data.blog.url})`
-      contact.current.style.backgroundImage = `url(${data.contact.url})`
+
+      const sections = data.map(section => {
+        const panels = section.section.map( panel => {
+          return {
+            title: panel.title,
+            coverUrl: panel.cover.url,
+            type: panel.cover.mime.split("/")[0] || null
+          }
+        })
+        return {
+          name: section.name,
+          order: section.order,
+          panels: panels
+        }
+      }).sort((a,b) => {
+        if (a.order < b.order) return -1
+        if (a.order > b.order) return 1
+        return 0
+      })
+      setSections(sections)
 
     } catch (err) {
       console.error(err)
@@ -77,10 +92,55 @@ const Home = React.memo(() => {
     setCounter(++index)
   }
 
+  const displaySections = () => {
+    return sections.map( (section, idx) => {
+      let sectionClassName = section.panels.length > 1 ? "columns" : "default"
+      return (
+        <section key={section.name} className={sectionClassName}>
+        {
+          getSectionContent(section.panels, section.length-1 === idx)
+        }
+        </section>
+      )
+    })
+  }
+
+  const getSectionContent = (panels, lastSection) => {
+    return panels.map( (panel, idx) => {
+      const panelClassName = panels.length > 1 ? `panel bg column${idx+1}` : "panel bg"
+      const panelStyle = {
+        "backgroundImage": `url(${panel.coverUrl})`
+      }
+      return (
+        <div key={Math.random()} className={panelClassName} style={panelStyle}>
+        {
+          panel.title && <h1 className={panel.type}>{panel.title}</h1>
+        }
+        {
+          panel.type === "video" &&
+            <video autoPlay muted loop>
+              <source src={panel.coverUrl}/>
+            </video>
+        }
+        {
+          panels.length-1 === idx && !lastSection &&
+          <button className="down-arrow" onClick={handleClick}>
+            <img src={arrow} alt="down-arrow" />
+          </button>
+        }
+        </div>
+      )
+    })
+
+  }
+
   return (
     <div id="home" className="page">
       <Indicator positions={triggerPos} currentIdx={currentIdx} />
-      <section className="panel bg overview" >
+      {
+        displaySections()
+      }
+      {/* <section className="panel bg overview" >
         <h1 className="video">Custom <br/> 3D Knitwear</h1>
         <button className="down-arrow" onClick={handleClick}>
           <img src={arrow} alt="down-arrow" />
@@ -108,7 +168,7 @@ const Home = React.memo(() => {
       </section>
       <section className="panel bg contact" key={3} ref={contact}>
         <Link to="/contact"><h1>Contact</h1></Link>
-      </section>
+      </section> */}
     </div>
   )
 })

@@ -21,7 +21,6 @@ function Post() {
     try {
       const res = await fetch( process.env.REACT_APP_BACKEND + `/posts/${id}`)
       const data = await res.json()
-      console.log('post data:', data)
       const postInfo = {
         id: data.id,
         name: data.name,
@@ -33,7 +32,7 @@ function Post() {
       }
       setCurrentPost(postInfo)
     } catch (err) {
-      console.log("Failed to get post data:", err)
+      console.error("Failed to get post data:", err)
     }
   }
 

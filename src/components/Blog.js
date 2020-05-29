@@ -38,10 +38,9 @@ function Blog() {
           imgUrl: post['preview_img'].url
         }
       }).sort(compareByDate)
-      console.log(data, result)
       setPosts(result)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
