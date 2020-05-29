@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import {ThemeContext} from './contexts/ThemeContext'
 import {Grid} from '@material-ui/core'
 import './App.scss'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 function App() {
 

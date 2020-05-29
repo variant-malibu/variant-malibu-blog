@@ -95,6 +95,14 @@ input, textarea {
   font-style: italic;
 }
 
+.loading {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 /* ===============
