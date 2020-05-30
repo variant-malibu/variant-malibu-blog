@@ -114,7 +114,7 @@ input, textarea {
     transform: translateX(0);
   }
   100%{
-    transform: translateX(-2250px)
+    transform: translateX(-2255px)
   }
 }
 
@@ -123,7 +123,7 @@ input, textarea {
     transform: translateX(0);
   }
   100%{
-    transform: translateX(-1750px)
+    transform: translateX(-1775px)
   }
 }
 
@@ -132,7 +132,7 @@ input, textarea {
     transform: translateX(0);
   }
   100%{
-    transform: translateX(-2325px)
+    transform: translateX(-2360px)
   }
 }
 
@@ -947,7 +947,7 @@ input, textarea {
   }
 
   .container.active {
-    animation: indicatorSlide 0.5s ease-in-out;
+    animation: indicatorSlide 0.15s ease-out;
 
     button.box {
       border: 1.25px solid $pistachio;
