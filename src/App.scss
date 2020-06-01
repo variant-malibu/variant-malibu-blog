@@ -227,6 +227,7 @@ input, textarea {
   width: 100%;
   padding: 32px 12px 32px 24px;
   z-index: 200;
+  transition: opacity 0.25s ease-in-out;
 
   &.dark {
     background-image: linear-gradient(black, rgba(0,0,0,0))
@@ -258,7 +259,7 @@ input, textarea {
     width: 85vw;
     height: 100vh;
     background-color: black;
-    animation: menuSlide 0.5s ease-out;
+    animation: menuSlide 0.25s ease-out;
 
     .bar-btn {
       padding: 0;
@@ -904,16 +905,6 @@ input, textarea {
 
 /* web =indicator*/
 
-@keyframes indicatorSlide {
-  0% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-  }
-
-}
-
 #indicator {
   position: fixed;
   left: 24px;
@@ -934,6 +925,7 @@ input, textarea {
     padding: 0;
     cursor: pointer;
     background-color: $pistachio;
+    transition: background-color 0.5s ease-in-out;
 
     &:focus {
       outline: none;
@@ -947,7 +939,7 @@ input, textarea {
   }
 
   .container.active {
-    animation: indicatorSlide 0.15s ease-out;
+    //animation: indicatorSlide 0.15s ease-out;
 
     button.box {
       border: 1.25px solid $pistachio;
