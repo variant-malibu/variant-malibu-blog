@@ -98,7 +98,7 @@ const Home = React.memo(() => {
       return (
         <section key={section.name} className={sectionClassName}>
         {
-          getSectionContent(section.panels, section.length-1 === idx)
+          getSectionContent(section.panels, sections.length-1 === idx)
         }
         </section>
       )
