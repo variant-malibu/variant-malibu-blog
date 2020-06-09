@@ -161,7 +161,7 @@ input, textarea {
 
 .sliding-banner {
   overflow: hidden;
-  height: 155px;
+  height: 85px;
   background-repeat: repeat-x;
 
   &.terms {
@@ -251,7 +251,9 @@ input, textarea {
     }
   }
 
-
+  .logo {
+    height: 40px;
+  }
   .menu {
     position: absolute;
     right: 0;
@@ -486,7 +488,6 @@ input, textarea {
   flex-direction: column;
   align-items: center;
   color: white;
-  padding: 50px 0;
 
   .partners-section {
     padding: 0 24px;
@@ -833,10 +834,15 @@ input, textarea {
 /* web large screen styles */
 @media (min-width:600px) {
 
+  /* web =global */
   .lead {
     font-size: 20px;
     max-width: 750px;
     text-align: center;
+  }
+
+  .sliding-banner {
+    height: 155px;
   }
 
   /* web navbar */

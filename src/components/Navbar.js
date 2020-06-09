@@ -36,7 +36,7 @@ class Navbar extends React.Component {
         key: 'about'
       },
       {
-        title: 'FASHION 4.0 BLOG',
+        title: 'BLOG',
         selected: false,
         key: 'blog'
       },
@@ -81,7 +81,7 @@ class Navbar extends React.Component {
     return (
       <>
         <div id="navbar" style={{ "opacity" : this.state.displayNavbar ? "100%":"0%"}} className={this.context.darkTheme ? "dark" : "light"} ref={this.navbarRef}>
-          <Link to="/"><img src={this.context.darkTheme ? logoLight : logoDark} alt="logo" /></Link>
+          <Link to="/"><img className="logo" src={this.context.darkTheme ? logoLight : logoDark} alt="logo" /></Link>
           <Button className="bar-btn" onClick={this.handleClick}>
             <Bar/>
           </Button>
