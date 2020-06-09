@@ -67,7 +67,7 @@ class Navbar extends React.Component {
     if (this.state.lastScroll > current) {
       if (this.state.displayNavbar === false) this.setState({displayNavbar :true})
     } else {
-      if (this.state.displayNavbar) this.setState({displayNavbar :false})
+      if (!this.state.displayMenu && this.state.displayNavbar) this.setState({displayNavbar :false})
     }
     this.setState({lastScroll: current})
   }
